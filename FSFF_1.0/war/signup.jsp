@@ -37,7 +37,7 @@
 							<li><a href="index.jsp">Home</a></li>
 							<li><a href="index.jsp">About</a></li>
 							<li><a href="contact_us.html">Contact us</a></li>
-							<li><a href="#comedy">Comedy</a></li>
+							<li><a href="comedy.jsp">Comedy</a></li>
 							<li><a href="#action">Action</a></li>
 							<li><a href="#drama">Drama</a></li>
 							<li><a href="#Romance">Romance</a></li>

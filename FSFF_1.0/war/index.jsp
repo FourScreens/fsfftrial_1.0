@@ -33,7 +33,7 @@
 							<li class="active"><a href="#">Home</a></li>
 							<li><a href="#about">About</a></li>
 							<li><a href="contact_us.html">Contact us</a></li>
-							<li><a href="#comedy">Comedy</a></li>
+							<li><a href="comedy.jsp">Comedy</a></li>
 							<li><a href="#action">Action</a></li>
 							<li><a href="#drama">Drama</a></li>
 							<li><a href="#Romance">Romance</a></li>
@@ -42,15 +42,16 @@
 							<li><a href="#Horror">Horror</a></li>
 							<%
 								if (request.getSession().getAttribute("JSESSION") != null) {
-									UserSession sessionObject =(UserSession) request.getSession().getAttribute(
-											"JSESSION");
+									UserSession sessionObject = (UserSession) request.getSession()
+											.getAttribute("JSESSION");
 									String login = sessionObject.getFirstName();
 							%>
 							<li><a href="uploadfilm.jsp">UploadFilm</a></li>
 							<ul class="nav pull-right">
 								<li>Welcome <%=login%>
 								</li>
-								<li><a class="active" href="LogOut" name="logout">Logout </a></li>
+								<li><a class="active" href="LogOut" name="logout">Logout
+								</a></li>
 							</ul>
 							<%
 								} else {

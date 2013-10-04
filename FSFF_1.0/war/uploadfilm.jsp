@@ -18,7 +18,7 @@
 <link href="css/boot-business.css" rel="stylesheet">
 </head>
 <body>
-<%@ page import="com.fsff.ui.entity.UserSession"%>
+	<%@ page import="com.fsff.ui.entity.UserSession"%>
 	<!-- Start: HEADER -->
 	<header>
 		<!-- Start: Navigation wrapper -->
@@ -37,7 +37,7 @@
 							<li><a href="index.jsp">Home</a></li>
 							<li><a href="#about">About</a></li>
 							<li><a href="contact_us.html">Contact us</a></li>
-							<li><a href="#comedy">Comedy</a></li>
+							<li><a href="comedy.jsp">Comedy</a></li>
 							<li><a href="#action">Action</a></li>
 							<li><a href="#drama">Drama</a></li>
 							<li><a href="#Romance">Romance</a></li>
@@ -100,11 +100,36 @@
 					</label>
 				</div>
 				<div>
-					<label for="Cast">Cast:&nbsp; <input
-						style="display: inline;" type="text" id="Cast" name="Cast"
-						placeholder="Director, Actors">
+					<label for="Description">Description:&nbsp; <input
+						style="display: inline;" type="text" id="Description"
+						name="Description" placeholder="Description">
 					</label>
 				</div>
+				<div>
+					<label for="Cast">Cast:&nbsp; <input
+						style="display: inline;" type="text" id="cast" name="cast"
+						placeholder="Cast">
+					</label>
+				</div>
+				<div>
+					<label for="Director">Director:&nbsp; <input
+						style="display: inline;" type="text" id="director" name="director"
+						placeholder="Director">
+					</label>
+				</div>
+				<div>
+					<label for="Producer">Producer:&nbsp; <input
+						style="display: inline;" type="text" id="producer" name="producer"
+						placeholder="Producer">
+					</label>
+				</div>
+				<div>
+					<label for="Writer">Writer:&nbsp; <input
+						style="display: inline;" type="text" id="writer" name="writer"
+						placeholder="Writer">
+					</label>
+				</div>
+
 				<div>
 					<label for="2 minute clip">2 minute clip*:&nbsp; <input
 						style="display: inline;" type="text" id="2 minute clip"
@@ -129,8 +154,7 @@
         fill in!!
       </textarea>
 					<br> <input type="radio" name="Agree"> I Agree to the
-					Terms and Condition<br>
-					<br>
+					Terms and Condition<br> <br>
 				</div>
 
 				<button class="btn btn-large btn-primary" type="submit">Upload</button>

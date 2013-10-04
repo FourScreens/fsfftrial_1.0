@@ -21,47 +21,56 @@ import com.fsff.util.StringManipulation;
 public class FilmSubmissionService implements FilmSubmission {
 
 	@Override
-	public boolean submitFilm(String filmName, String genre, 
-			String filmDescription, String roundOneClip, String roundTwoClip,
-			String roundThreeClip,int userId) {
+	public boolean submitFilm(String filmName, String genre,
+			String filmDescription, String cast, String director,
+			String producer, String writer, String roundOneClip,
+			String roundTwoClip, String roundThreeClip, int userId) {
+		//TODO: Validate the strings
 		if (StringManipulation.isNullOrEmpty(filmName)
-//				|| StringManipulation.isNullOrEmpty(filmDescription)
+				// || StringManipulation.isNullOrEmpty(filmDescription)
 				|| StringManipulation.isNullOrEmpty(roundOneClip)
 				|| StringManipulation.isNullOrEmpty(roundTwoClip)
-				|| StringManipulation.isNullOrEmpty(roundThreeClip)){
+				|| StringManipulation.isNullOrEmpty(roundThreeClip)) {
 			return false;
 		}
 		SessionManager.createSession();
 		SessionManager.createEntityManager();
 		EntityManager entityManager = SessionManager.getEntityManager();
-		Festival addToFestival ;
+		Festival addToFestival;
 		User addFilmToUser;
-		Query userQuery = entityManager.createQuery("from User where id = '"+ userId +"'");
+		Query userQuery = entityManager.createQuery("from User where id = '"
+				+ userId + "'");
 		List userList = userQuery.getResultList();
-		if(userList == null || userList.isEmpty()){
+		if (userList == null || userList.isEmpty()) {
 			return false;
 		}
-		addFilmToUser = (User)userList.get(0);
+		addFilmToUser = (User) userList.get(0);
 		Set<Film> userFilms = addFilmToUser.getFilms();
-	
+
 		// boolean activeStatus = true;
-		Query festivalQuery = entityManager.createQuery("from Festival where active = 1");
+		Query festivalQuery = entityManager
+				.createQuery("from Festival where active = 1");
 		List festivalList = festivalQuery.getResultList();
-		if(festivalList == null || festivalList.isEmpty()){
+		if (festivalList == null || festivalList.isEmpty()) {
 			return false;
 		}
-		addToFestival = (Festival)festivalList.get(0);
-		Set<Film> films = addToFestival.getFilms();		
-		Query genreQuery = entityManager.createQuery("from Genre where genre = '"+genre+"'");
+		addToFestival = (Festival) festivalList.get(0);
+		Set<Film> films = addToFestival.getFilms();
+		Query genreQuery = entityManager
+				.createQuery("from Genre where genre = '" + genre + "'");
 		List genreType = genreQuery.getResultList();
-		if(genreType == null || genreType.isEmpty()){
+		if (genreType == null || genreType.isEmpty()) {
 			return false;
 		}
-		Genre filmGenre = (Genre)genreType.get(0);
+		Genre filmGenre = (Genre) genreType.get(0);
 		Film newFilm = new Film();
 		newFilm.setFilmName(filmName);
 		newFilm.setGenre(filmGenre);
 		newFilm.setFilmDescription(filmDescription);
+		newFilm.setCast(cast);
+		newFilm.setDirector(director);
+		newFilm.setProducer(producer);
+		newFilm.setWriter(writer);
 		Clip1 clip1Link = new Clip1();
 		clip1Link.setClipLink(roundOneClip);
 		clip1Link.setQualified(false);
@@ -82,14 +91,14 @@ public class FilmSubmissionService implements FilmSubmission {
 		newFilm.setRoundThreeClip(clip3Link);
 		newFilm.setFullMovieReceived(false);
 		newFilm.setFestivalId(addToFestival);
-		//TODO: Use a table for status
+		// TODO: Use a table for status
 		newFilm.setStatus("Submitted");
 		Calendar cal = java.util.Calendar.getInstance();
 		Date timeNow = new Date(cal.getTimeInMillis());
 		System.out.println(timeNow);
 		newFilm.setSubmissionDate(timeNow);
 		newFilm.setLastStatusUpdateDate(timeNow);
-		
+
 		userFilms.add(newFilm);
 		addFilmToUser.setFilms(userFilms);
 		films.add(newFilm);
@@ -100,11 +109,11 @@ public class FilmSubmissionService implements FilmSubmission {
 		entityManager.persist(clip1Link);
 		entityManager.persist(clip2Link);
 		entityManager.persist(clip3Link);
-		
+
 		entityManager.merge(addToFestival);
-		entityManager.merge(addFilmToUser);		
+		entityManager.merge(addFilmToUser);
 		entityManager.getTransaction().commit();
-			return false;
+		return false;
 	}
 
 }

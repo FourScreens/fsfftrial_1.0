@@ -47,6 +47,16 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
     <url-pattern>/SubmitFilmServlet</url-pattern>
   </servlet-mapping>
   
+   <servlet>
+    <servlet-name>viewFilm</servlet-name>
+    <servlet-class>com.fsff.presentation.ViewFilmServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>viewFilm</servlet-name>
+    <url-pattern>/viewFilm</url-pattern>
+  </servlet-mapping>
+  
   <!-- Default page to serve -->
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>

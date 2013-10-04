@@ -18,7 +18,7 @@
 <link href="css/boot-business.css" rel="stylesheet">
 </head>
 <body>
-<%@ page import="com.fsff.ui.entity.UserSession"%>
+	<%@ page import="com.fsff.ui.entity.UserSession"%>
 	<!-- Start: HEADER -->
 	<header>
 		<!-- Start: Navigation wrapper -->
@@ -44,6 +44,7 @@
 							<li><a href="#thriller">Thriller</a></li>
 							<li><a href="#Animation">Animation</a></li>
 							<li><a href="#Horror">Horror</a></li>
+
 							<%
 								if (request.getSession().getAttribute("JSESSION") != null) {
 									UserSession sessionObject = (UserSession) request.getSession()
@@ -54,7 +55,8 @@
 							<ul class="nav pull-right">
 								<li>Welcome <%=login%>
 								</li>
-								<li><a class="active" href="LogOut">Logout </a></li>
+								<li><a class="active" href="LogOut" name="logout">Logout
+								</a></li>
 							</ul>
 							<%
 								} else {
@@ -63,6 +65,7 @@
 							<%
 								}
 							%>
+
 						</ul>
 					</div>
 				</div>
@@ -74,62 +77,58 @@
 	<!-- Start: MAIN CONTENT -->
 	<div class="content">
 		<div class="container">
-			<div class="row">
-				<div class="span6 offsetsgn">
-					<h4 class="widget-header">
-						<i class="icon-lock"></i> Signin to FSFF
-					</h4>
-					<div class="widget-body">
-						<div class="center-align">
-							<form class="form-horizontal form-signin-signup"
-								action="LoginServlet" method="post">
-								<input type="text" name="username" placeholder="Username"
-									required="required"> <input type="password"
-									name="password" placeholder="Password" required="required">
-								<div class="remember-me">
-									<div class="pull-left">
-										<label class="checkbox"> <input type="checkbox">
-											Remember me
-										</label>
-									</div>
-									<div class="pull-right">
-										<a href="#">Forgot password?</a>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-								<input type="submit" value="Signin"
-									class="btn btn-primary btn-large">
-							</form>
-							<h4>
-								<i class="icon-question-sign"></i> Don't have an account?
-							</h4>
-							<a href="signup.jsp" class="btn btn-large bottom-space">Signup</a>
-						</div>
-					</div>
-				</div>
-				<div class="span6 offsetsgnrt">
-					<h4 class="widget-header">
-						<i class="icon-lock"></i> Signin with Social Profiles
-					</h4>
-					<div class="widget-body">
-						<div class="center-align">
-							<br> <br>
-							<ul class="signin-with-list">
-								<li><a class="btn-twitter"> <i
-										class="icon-twitter icon-large"></i> Signin with Twitter
-								</a></li>
-								<li><a class="btn-facebook"> <i
-										class="icon-facebook icon-large"></i> Signin with Facebook
-								</a></li>
-								<li><a class="btn-google"> <i
-										class="icon-google-plus icon-large"></i> Signin with Google
-								</a></li>
-							</ul>
-							<br> <br> <br> <br> <br>
-						</div>
-					</div>
-				</div>
+			<div class="viewfilm">
+				<script id="viewFilms" type="text/x-handlebars-template">
+          {{#each this}}
+          <div style="float:left;width:50%;">
+        <h1>{{FilmName}}<h1>
+       <div style="float:left;width:40%;margin: 0 auto;text-align:center;" class="flex-video widescreen" >
+           <!-- Button to trigger modal -->
+    <a href="#myModal" role="button" class="btn" data-toggle="modal">View Film</a>
+     
+    <!-- Modal -->
+    <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">{{FilmName}}</h3>
+    </div>
+    <div class="modal-body">
+     <iframe height="400px" width="100%" src={{url}} frameborder="0" allowfullscreen=""></iframe>
+    </div>
+    <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+    
+    </div>
+    </div>
+    <img src="{{url}}" width="175" height="200" />
+   
+        </div>
+    
+        
+  <div style="float:right; width:300px" >
+     <h5><span class="label label-primary">Cast:</span><br> {{Cast}} </h5>
+       <h5><span class="label label-primary">Director:</span><br> {{Director}} </h5>
+         <h5><span class="label label-primary">Producer:</span><br> {{Producer}} </h5>
+            <h5><span class="label label-primary">Rating:</span><br> {{Rating}} </h5>
+     </div>
+     </div>
+
+     {{/each}}
+     </script>
+
 			</div>
+		</div>
+
+		<div class="pagination pagination-right">
+			<ul>
+				<li><a href="#">Prev</a></li>
+				<li><a href="#">1</a></li>
+				<li><a href="#">2</a></li>
+				<li><a href="#">3</a></li>
+				<li><a href="#">4</a></li>
+				<li><a href="#">5</a></li>
+				<li><a href="#">Next</a></li>
+			</ul>
 		</div>
 	</div>
 	<!-- End: MAIN CONTENT -->
@@ -183,5 +182,9 @@
 	<script type="text/javascript" src="js/jquery.min.js"></script>
 	<script type="text/javascript" src="js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="js/boot-business.js"></script>
+	<script type="text/javascript"
+		src="https://raw.github.com/wycats/handlebars.js/1.0.0/dist/handlebars.js"></script>
+	<script type="text/javascript" src="js/viewfilm.js"></script>
+
 </body>
 </html>

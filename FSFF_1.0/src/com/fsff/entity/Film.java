@@ -33,6 +33,14 @@ public class Film {
 
 	private String filmDescription;
 
+	private String cast;
+
+	private String director;
+
+	private String producer;
+
+	private String writer;
+
 	@OneToOne
 	@PrimaryKeyJoinColumn
 	private Clip1 roundOneClip;
@@ -100,6 +108,38 @@ public class Film {
 
 	public void setFilmDescription(String filmDescription) {
 		this.filmDescription = filmDescription;
+	}
+
+	public String getCast() {
+		return cast;
+	}
+
+	public void setCast(String cast) {
+		this.cast = cast;
+	}
+
+	public String getDirector() {
+		return director;
+	}
+
+	public void setDirector(String director) {
+		this.director = director;
+	}
+
+	public String getProducer() {
+		return producer;
+	}
+
+	public void setProducer(String producer) {
+		this.producer = producer;
+	}
+
+	public String getWriter() {
+		return writer;
+	}
+
+	public void setWriter(String writer) {
+		this.writer = writer;
 	}
 
 	public Clip1 getRoundOneClip() {
@@ -197,5 +237,7 @@ public class Film {
 	public void setFilmMaker(User filmMaker) {
 		this.filmMaker = filmMaker;
 	}
+
+	
 
 }
