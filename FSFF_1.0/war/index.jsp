@@ -6,7 +6,7 @@
 <meta name="description"
 	content="FSFF | Short description about company">
 <meta name="author" content="Your name">
-<title>FOUR SCREEN FILM FESTIVAL</title>
+<title>FOUR SCREENS FILM FESTIVAL</title>
 <!-- Bootstrap -->
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <!-- Bootstrap responsive -->
@@ -25,28 +25,33 @@
 		<div class="navbar navbar-fixed-top">
 			<div class="navbar-inner">
 				<div class="container">
-
+					<a href="#" class="brand brand-bootbus">Four Screens Film
+						Festival</a>
 
 					<!-- Start: Primary navigation -->
 					<div class="nav-collapse collapse">
 						<ul class="nav pull-right">
-							<li class="active"><a href="#">Home</a></li>
+							<li class="active"><a href="index.jsp">Home</a></li>
 							<li><a href="#about">About</a></li>
-							<li><a href="contact_us.html">Contact us</a></li>
-							<li><a href="comedy.jsp">Comedy</a></li>
-							<li><a href="#action">Action</a></li>
-							<li><a href="#drama">Drama</a></li>
-							<li><a href="#Romance">Romance</a></li>
-							<li><a href="#thriller">Thriller</a></li>
-							<li><a href="#Animation">Animation</a></li>
-							<li><a href="#Horror">Horror</a></li>
+							<li class="dropdown"><a href="#" class="dropdown-toggle"
+								data-toggle="dropdown">View and Vote<b class="caret"></b></a>
+								<ul class="dropdown-menu">
+									<li><a href="comedy.jsp">Comedy</a></li>
+									<li><a href="comedy.jsp">Action</a></li>
+									<li><a href="comedy.jsp">Drama</a></li>
+									<li><a href="comedy.jsp">Romance</a></li>
+									<li><a href="comedy.jsp">Thriller</a></li>
+									<li><a href="comedy.jsp">Animation</a></li>
+									<li><a href="comedy.jsp">Horror</a></li>
+								</ul></li>
+								<li><a href="uploadfilm.jsp">Enter the Film</a></li>
 							<%
 								if (request.getSession().getAttribute("JSESSION") != null) {
 									UserSession sessionObject = (UserSession) request.getSession()
 											.getAttribute("JSESSION");
 									String login = sessionObject.getFirstName();
 							%>
-							<li><a href="uploadfilm.jsp">UploadFilm</a></li>
+							
 							<ul class="nav pull-right">
 								<li>Welcome <%=login%>
 								</li>
@@ -145,8 +150,8 @@
 						</div>
 					</div>
 					<a class="left carousel-control" href="#heroSlider"
-						data-slide="prev">‹</a> <a class="right carousel-control"
-						href="#heroSlider" data-slide="next">›</a>
+						data-slide="prev"><</a> <a class="right carousel-control"
+						href="#heroSlider" data-slide="next">></a>
 				</div>
 			</div>
 		</div>

@@ -12,6 +12,7 @@ public class FilmDataAdapter implements JsonSerializer<FilmData> {
 			JsonSerializationContext arg2) {
 		JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("FilmName", arg0.getFilm());
+        System.out.println(arg0.getClipURL());
         jsonObject.addProperty("url", arg0.getClipURL());
         jsonObject.addProperty("Cast", arg0.getCast());
         jsonObject.addProperty("Director", arg0.getDirector());

@@ -85,7 +85,7 @@ public class FilmData implements Serializable{
 
 	public String toJson(FilmData[] films) {  
 	    GsonBuilder gsonBuilder = new GsonBuilder();
-	    Gson gson = gsonBuilder.registerTypeAdapter(FilmData.class, new FilmDataAdapter()).create();
+	    Gson gson = gsonBuilder.disableHtmlEscaping().registerTypeAdapter(FilmData.class, new FilmDataAdapter()).create();
 	    return gson.toJson(films);
 	}  
 

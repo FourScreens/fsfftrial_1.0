@@ -51,7 +51,7 @@ public class SignUpServlet extends HttpServlet {
 					eMail, password, passwordConfirmation,
 					forgotPasswordQuestion, forgotPasswordAnswer, userType);
 			if(signUp){
-				request.getRequestDispatcher("/uploadfilm.jsp")
+				request.getRequestDispatcher("/signin.jsp")
 				.forward(request, response);
 			} else{
 				request.setAttribute("errorMessage", "Registration failed!!!");
