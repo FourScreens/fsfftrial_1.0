@@ -22,7 +22,8 @@ public class FilmDataManipulation {
 			filmDataObject.setDirector(film.getDirector());
 			filmDataObject.setProducer(film.getProducer());
 			filmDataObject.setWriter(film.getWriter());
-			filmDataObject.setScore("5");
+			long score = film.getVote().getScore();
+			filmDataObject.setScore(""+score);
 			filmData[iter++] = filmDataObject;
 		}
 		return filmData;

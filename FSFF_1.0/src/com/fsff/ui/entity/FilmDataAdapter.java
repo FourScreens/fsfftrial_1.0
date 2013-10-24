@@ -18,7 +18,7 @@ public class FilmDataAdapter implements JsonSerializer<FilmData> {
 		jsonObject.addProperty("Director", arg0.getDirector());
 		jsonObject.addProperty("Producer", arg0.getProducer());
 		jsonObject.addProperty("Writer", arg0.getWriter());
-		jsonObject.addProperty("Score", arg0.getScore());
+		jsonObject.addProperty("Rating", arg0.getScore());
 		return jsonObject;
 	}
 
