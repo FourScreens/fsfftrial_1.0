@@ -49,12 +49,12 @@ public class ViewFilmServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 
 		String genre = request.getParameter("genre");
-		PrintWriter out = 	response.getWriter();
+		PrintWriter out = response.getWriter();
 		String reply = null;
 		if (genre != null) {
 			reply = viewFilm(genre);
 		}
-	
+
 		out.write(reply);
 	}
 

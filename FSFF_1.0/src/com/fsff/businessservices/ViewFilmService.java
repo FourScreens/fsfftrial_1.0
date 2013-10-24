@@ -1,8 +1,6 @@
 package com.fsff.businessservices;
 
-import java.util.Collection;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -13,12 +11,13 @@ import com.fsff.entity.Film;
 import com.fsff.entity.Genre;
 import com.fsff.sessionmanager.SessionManager;
 import com.fsff.ui.entity.FilmData;
+import com.fsff.util.FilmDataManipulation;
 
 public class ViewFilmService implements ViewFilm {
 
 	@Override
 	public FilmData[] viewFilms(String genre) {
-		Set<Film> films = null;
+		List<Film> films = null;
 		FilmData[] filmData = null;
 		SessionManager.createSession();
 		SessionManager.createEntityManager();
@@ -36,28 +35,7 @@ public class ViewFilmService implements ViewFilm {
 		if (filmList == null || filmList.isEmpty()) {
 			return null;
 		}
-		films = new HashSet<Film>(filmList);
-		filmData = convertFilmToData(films);
-		return filmData;
-	}
-	
-	private FilmData[] convertFilmToData(Set<Film> films){
-		if(films==null || films.isEmpty()){
-			return null;
-		}
-		FilmData[] filmData = new FilmData[films.size()];
-		int iter = 0;
-		for(Film film: films){
-			FilmData filmDataObject = new FilmData();
-			filmDataObject.setFilm(film.getFilmName());
-			filmDataObject.setClipURL(film.getRoundOneClip().getClipLink());
-			filmDataObject.setCast(film.getCast());
-			filmDataObject.setDirector(film.getDirector());
-			filmDataObject.setProducer(film.getProducer());
-			filmDataObject.setWriter(film.getWriter());
-			filmDataObject.setRating("5");
-			filmData[iter++]= filmDataObject;
-		}
+		filmData = FilmDataManipulation.convertFilmToData(filmList);
 		return filmData;
 	}
 

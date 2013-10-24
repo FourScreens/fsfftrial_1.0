@@ -6,7 +6,7 @@
 <meta name="description"
 	content="Bootbusiness | Short description about company">
 <meta name="author" content="Your name">
-<title>Signup Page</title>
+<title>Four screens film festival</title>
 <!-- Bootstrap -->
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <!-- Bootstrap responsive -->
@@ -76,37 +76,81 @@
 	<!-- Start: MAIN CONTENT -->
 	<div class="content">
 		<div class="container">
-			<div class="row">
-				<div class="span6 offset3">
-					<h4 class="widget-header">
-						<i class="icon-gift"></i> Be a part of FSFF
-					</h4>
-					<div class="widget-body">
-						<div class="center-align">
-							<form class="form-horizontal form-signin-signup"
-								action="SignUpServlet" method="post">
-								<input type="text" name="firstname" placeholder="FirstName" />
-								<input type="text" name="lastname" placeholder="LastName" /> <input
-									type="text" name="email" placeholder="Email" /> <input
-									type="password" name="password" placeholder="Password" /> <input
-									type="password" name="confirmation"
-									placeholder="Password Confirmation" /> <select name="userType"
-									id="userType">
-									<option value="Viewer">User</option>
-									<option value="Film Maker">Film Maker</option>
-
-								</select> <br> <br>
-								<div>
-									<input type="submit" value="Signup"
-										class="btn btn-primary btn-large">
-								</div>
-							</form>
-						</div>
-					</div>
+			<form method="post" name="srchfrm" action="Search">
+				<div align=right class="search">
+					<input type="search" name="search" placeholder="Search">
+					<select name="selector" id="selector">
+						<option value="film">Film Name</option>
+						<option value="cast">Cast</option>
+						<option value="director">Director</option>
+						<option value="writer">Writer</option>
+						<option value="producer">producer</option>
+					</select>
+					<input type="submit" value="Search" class="btn btn-primary btn-large">
 				</div>
+			</form>
+			
+			<div class="container">
+			
+			<div align=left class="search">
+				<H1>${counter} Results found</H1>
+			</div>
+
+				<script id="viewFilms" type="text/x-handlebars-template">
+          {{#each this}}
+          <div style="float:left;width:50%;">
+        <h1>{{FilmName}}<h1>
+       <div style="float:left;width:40%;margin: 0 auto;text-align:center;" class="flex-video widescreen" >
+           <!-- Button to trigger modal -->
+    <a href="#myModal" role="button" class="btn" data-toggle="modal">View Film</a>
+     
+    <!-- Modal -->
+    <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+    <h3 id="myModalLabel">{{FilmName}}</h3>
+    </div>
+    <div class="modal-body">
+     <iframe height="400px" width="100%" src={{url}} frameborder="0" allowfullscreen=""></iframe>
+    </div>
+    <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+    
+    </div>
+    </div>
+    <img src="{{url}}" width="175" height="200" />
+   
+        </div>
+    
+        
+  <div style="float:right; width:300px" >
+     <h5><span class="label label-primary">Cast:</span><br> {{Cast}} </h5>
+       <h5><span class="label label-primary">Director:</span><br> {{Director}} </h5>
+         <h5><span class="label label-primary">Producer:</span><br> {{Producer}} </h5>
+            <h5><span class="label label-primary">Rating:</span><br> {{Rating}} </h5>
+     </div>
+     </div>
+
+     {{/each}}
+     </script>
+
+
 			</div>
 		</div>
+
+		<div class="pagination pagination-right">
+			<ul>
+				<li><a href="#">Prev</a></li>
+				<li><a href="#">1</a></li>
+				<li><a href="#">2</a></li>
+				<li><a href="#">3</a></li>
+				<li><a href="#">4</a></li>
+				<li><a href="#">5</a></li>
+				<li><a href="#">Next</a></li>
+			</ul>
+		</div>
 	</div>
+	
 	<!-- End: MAIN CONTENT -->
 	<!-- Start: FOOTER -->
 	<footer>
@@ -158,5 +202,9 @@
 	<script type="text/javascript" src="js/jquery.min.js"></script>
 	<script type="text/javascript" src="js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="js/boot-business.js"></script>
+	<script type="text/javascript"
+		src="https://raw.github.com/wycats/handlebars.js/1.0.0/dist/handlebars.js"></script>
+	<script type="text/javascript" src="js/viewfilm.js"></script>
+
 </body>
 </html>

@@ -57,6 +57,16 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
     <url-pattern>/viewFilm</url-pattern>
   </servlet-mapping>
   
+  <servlet>
+    <servlet-name>SearchServlet</servlet-name>
+    <servlet-class>com.fsff.presentation.SearchServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>SearchServlet</servlet-name>
+    <url-pattern>/Search</url-pattern>
+  </servlet-mapping>
+  
   <!-- Default page to serve -->
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>

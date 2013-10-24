@@ -9,7 +9,6 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
-
 @Entity
 @Table(name = "LOGIN")
 public class Login {
@@ -22,16 +21,19 @@ public class Login {
 	private String login;
 
 	private String password;
-	
-	private String userType;
+
+	@OneToOne(mappedBy = "loginDetails", optional = false)
+	@PrimaryKeyJoinColumn
+	private UserType userType;
+	// private String userType;
 
 	private String forgotPasswordQuestion;
 
 	private String forgotPasswordAnswer;
-	
-	@OneToOne(mappedBy="loginDetails",optional=false)
+
+	@OneToOne(mappedBy = "loginDetails", optional = false)
 	@PrimaryKeyJoinColumn
-	private User user;	
+	private User user;
 
 	public int getId() {
 		return id;
@@ -57,11 +59,11 @@ public class Login {
 		this.password = password;
 	}
 
-	public String getUserType() {
+	public UserType getUserType() {
 		return userType;
 	}
 
-	public void setUserType(String userType) {
+	public void setUserType(UserType userType) {
 		this.userType = userType;
 	}
 
@@ -89,5 +91,4 @@ public class Login {
 		this.user = user;
 	}
 
-	
 }

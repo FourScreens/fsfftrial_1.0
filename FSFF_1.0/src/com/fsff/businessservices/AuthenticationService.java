@@ -7,6 +7,7 @@ import javax.persistence.Query;
 
 import com.fsff.entity.Login;
 import com.fsff.entity.User;
+import com.fsff.entity.UserType;
 import com.fsff.sessionmanager.SessionManager;
 import com.fsff.ui.entity.UserSession;
 import com.fsff.util.StringManipulation;
@@ -31,7 +32,7 @@ public class AuthenticationService implements Authentication {
 	 */
 	@Override
 	public UserSession login(String login, String password) {
-		//int userId = -1;
+		// int userId = -1;
 		UserSession userSession = null;
 		if (StringManipulation.isNullOrEmpty(login)
 				&& StringManipulation.isNullOrEmpty(password)) {
@@ -41,8 +42,8 @@ public class AuthenticationService implements Authentication {
 		SessionManager.createSession();
 		SessionManager.createEntityManager();
 		EntityManager entityManager = SessionManager.getEntityManager();
-		Query loginQuery = entityManager.createQuery("from Login where login = '"
-				+ login+"'");
+		Query loginQuery = entityManager
+				.createQuery("from Login where login = '" + login + "'");
 		List allLogin = loginQuery.getResultList();
 		if (allLogin != null && (!allLogin.isEmpty())) {
 			Login checkLogin = (Login) allLogin.get(0);
@@ -104,12 +105,20 @@ public class AuthenticationService implements Authentication {
 		createLogin.setPassword(password);
 		createLogin.setForgotPasswordQuestion(forgotPasswordQuestion);
 		createLogin.setForgotPasswordAnswer(forgotPasswordAnswer);
-		createLogin.setUserType(userType);	
 		createLogin.setUser(newUser);
 		newUser.setLoginDetails(createLogin);
 		SessionManager.createSession();
 		SessionManager.createEntityManager();
 		EntityManager entityManager = SessionManager.getEntityManager();
+		Query userTypeQuery = entityManager
+				.createQuery(" from UserType where userType = '" + userType
+						+ "'");
+		List userTypeId = userTypeQuery.getResultList();
+		if (userTypeId == null || userTypeId.isEmpty()) {
+			return false;
+		}
+		UserType user = (UserType) userTypeId.get(0);
+		createLogin.setUserType(user);
 		entityManager.getTransaction().begin();
 		entityManager.persist(newUser);
 		entityManager.persist(createLogin);

@@ -63,6 +63,10 @@ public class Film {
 
 	private Date lastStatusUpdateDate;
 
+	@OneToOne
+	@PrimaryKeyJoinColumn
+	private Vote vote;
+
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "id")
 	private Set<Comment> comments;
 
@@ -238,6 +242,12 @@ public class Film {
 		this.filmMaker = filmMaker;
 	}
 
-	
+	public Vote getVote() {
+		return vote;
+	}
+
+	public void setVote(Vote vote) {
+		this.vote = vote;
+	}
 
 }

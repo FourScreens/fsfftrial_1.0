@@ -1,6 +1,5 @@
 package com.fsff.presentation;
 
-
 import java.io.IOException;
 
 import javax.servlet.ServletException;
@@ -18,12 +17,14 @@ import com.fsff.util.StringManipulation;
 @WebServlet("/SignUpServlet")
 public class SignUpServlet extends HttpServlet {
 
-	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		doProcess(request, response);
 	}
 
-	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doProcess(request,response);
+	public void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		doProcess(request, response);
 	}
 
 	public void doProcess(HttpServletRequest request,
@@ -33,11 +34,10 @@ public class SignUpServlet extends HttpServlet {
 		String lastName = request.getParameter("lastname");
 		String eMail = request.getParameter("email");
 		String password = request.getParameter("password");
-		String passwordConfirmation = request
-				.getParameter("confirmation");
+		String passwordConfirmation = request.getParameter("confirmation");
+		String userType = request.getParameter("userType");
 		String forgotPasswordQuestion = "";
 		String forgotPasswordAnswer = "";
-		String userType = "Film Maker";
 		if (StringManipulation.isNullOrEmpty(firstName)
 				|| StringManipulation.isNullOrEmpty(lastName)
 				|| StringManipulation.isNullOrEmpty(eMail)
@@ -50,13 +50,13 @@ public class SignUpServlet extends HttpServlet {
 			boolean signUp = authenticationObject.signUp(firstName, lastName,
 					eMail, password, passwordConfirmation,
 					forgotPasswordQuestion, forgotPasswordAnswer, userType);
-			if(signUp){
-				request.getRequestDispatcher("/signin.jsp")
-				.forward(request, response);
-			} else{
+			if (signUp) {
+				request.getRequestDispatcher("/signin.jsp").forward(request,
+						response);
+			} else {
 				request.setAttribute("errorMessage", "Registration failed!!!");
-				request.getRequestDispatcher("/signup.jsp").forward(
-						request, response);
+				request.getRequestDispatcher("/signup.jsp").forward(request,
+						response);
 			}
 		}
 

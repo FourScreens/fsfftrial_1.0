@@ -5,7 +5,7 @@ import java.io.Serializable;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-public class FilmData implements Serializable{
+public class FilmData implements Serializable {
 
 	/**
 	 * 
@@ -14,17 +14,19 @@ public class FilmData implements Serializable{
 
 	public String film;
 
+	public int filmId;
+
 	public String clipURL;
-	
+
 	public String cast;
-	
+
 	public String director;
-	
+
 	public String producer;
-	
+
 	public String writer;
-	
-	public String rating;
+
+	public String score;
 
 	public String getFilm() {
 		return film;
@@ -32,6 +34,14 @@ public class FilmData implements Serializable{
 
 	public void setFilm(String film) {
 		this.film = film;
+	}
+
+	public int getFilmId() {
+		return filmId;
+	}
+
+	public void setFilmId(int filmId) {
+		this.filmId = filmId;
 	}
 
 	public String getClipURL() {
@@ -74,20 +84,20 @@ public class FilmData implements Serializable{
 		this.writer = writer;
 	}
 
-	public String getRating() {
-		return rating;
+	public String getScore() {
+		return score;
 	}
 
-	public void setRating(String rating) {
-		this.rating = rating;
+	public void setScore(String score) {
+		this.score = score;
 	}
-	
 
-	public String toJson(FilmData[] films) {  
-	    GsonBuilder gsonBuilder = new GsonBuilder();
-	    Gson gson = gsonBuilder.disableHtmlEscaping().registerTypeAdapter(FilmData.class, new FilmDataAdapter()).create();
-	    return gson.toJson(films);
-	}  
+	public String toJson(FilmData[] films) {
+		GsonBuilder gsonBuilder = new GsonBuilder();
+		Gson gson = gsonBuilder.disableHtmlEscaping()
+				.registerTypeAdapter(FilmData.class, new FilmDataAdapter())
+				.create();
+		return gson.toJson(films);
+	}
 
-	
 }

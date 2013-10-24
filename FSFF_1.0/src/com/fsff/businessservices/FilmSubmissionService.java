@@ -15,6 +15,7 @@ import com.fsff.entity.Festival;
 import com.fsff.entity.Film;
 import com.fsff.entity.Genre;
 import com.fsff.entity.User;
+import com.fsff.entity.Vote;
 import com.fsff.sessionmanager.SessionManager;
 import com.fsff.util.StringManipulation;
 
@@ -25,7 +26,7 @@ public class FilmSubmissionService implements FilmSubmission {
 			String filmDescription, String cast, String director,
 			String producer, String writer, String roundOneClip,
 			String roundTwoClip, String roundThreeClip, int userId) {
-		//TODO: Validate the strings
+		// TODO: Validate the strings
 		if (StringManipulation.isNullOrEmpty(filmName)
 				// || StringManipulation.isNullOrEmpty(filmDescription)
 				|| StringManipulation.isNullOrEmpty(roundOneClip)
@@ -33,6 +34,9 @@ public class FilmSubmissionService implements FilmSubmission {
 				|| StringManipulation.isNullOrEmpty(roundThreeClip)) {
 			return false;
 		}
+		roundOneClip = roundOneClip.substring(roundOneClip.indexOf("v=")+2);
+		roundTwoClip = roundTwoClip.substring(roundTwoClip.indexOf("v=")+2);
+		roundThreeClip = roundThreeClip.substring(roundThreeClip.indexOf("v=")+2);
 		SessionManager.createSession();
 		SessionManager.createEntityManager();
 		EntityManager entityManager = SessionManager.getEntityManager();
@@ -63,6 +67,7 @@ public class FilmSubmissionService implements FilmSubmission {
 			return false;
 		}
 		Genre filmGenre = (Genre) genreType.get(0);
+		Vote vote = new Vote();
 		Film newFilm = new Film();
 		newFilm.setFilmName(filmName);
 		newFilm.setGenre(filmGenre);
@@ -71,6 +76,8 @@ public class FilmSubmissionService implements FilmSubmission {
 		newFilm.setDirector(director);
 		newFilm.setProducer(producer);
 		newFilm.setWriter(writer);
+		newFilm.setVote(vote);
+		vote.setFilm(newFilm);
 		Clip1 clip1Link = new Clip1();
 		clip1Link.setClipLink(roundOneClip);
 		clip1Link.setQualified(false);
@@ -104,16 +111,16 @@ public class FilmSubmissionService implements FilmSubmission {
 		films.add(newFilm);
 		addToFestival.setFilms(films);
 		entityManager.getTransaction().begin();
+		
 		entityManager.persist(newFilm);
 		entityManager.persist(filmGenre);
 		entityManager.persist(clip1Link);
 		entityManager.persist(clip2Link);
 		entityManager.persist(clip3Link);
-
+		entityManager.persist(vote);
 		entityManager.merge(addToFestival);
 		entityManager.merge(addFilmToUser);
 		entityManager.getTransaction().commit();
 		return false;
 	}
-
 }
