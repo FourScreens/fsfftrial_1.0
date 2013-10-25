@@ -37,12 +37,12 @@
 								data-toggle="dropdown">View and Vote<b class="caret"></b></a>
 								<ul class="dropdown-menu">
 									<li><a href="comedy.jsp">Comedy</a></li>
-									<li><a href="comedy.jsp">Action</a></li>
-									<li><a href="comedy.jsp">Drama</a></li>
-									<li><a href="comedy.jsp">Romance</a></li>
-									<li><a href="comedy.jsp">Thriller</a></li>
-									<li><a href="comedy.jsp">Animation</a></li>
-									<li><a href="comedy.jsp">Horror</a></li>
+									<li><a href="Action.jsp">Action</a></li>
+									<li><a href="Drama.jsp">Drama</a></li>
+									<li><a href="Romance.jsp">Romance</a></li>
+									<li><a href="Thriller.jsp">Thriller</a></li>
+									<li><a href="Animation.jsp">Animation</a></li>
+									<li><a href="Horror.jsp">Horror</a></li>
 								</ul></li>
 								<li><a href="uploadfilm.jsp">Enter the Film</a></li>
 							<%

@@ -1,4 +1,4 @@
-var data = "genre=Comedy";
+var data = "genre=Animation";
 $.ajax({
 	type : 'post',
 	url : 'viewFilm',
