@@ -39,7 +39,7 @@ public class VotingServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		doAction(request, response);
 	}
 
 	/**
@@ -48,16 +48,23 @@ public class VotingServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		doAction(request, response);
+	}
+
+	protected void doAction(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 
 		String sFilmId = request.getParameter("filmId");
 		int filmId = Integer.parseInt(sFilmId);
 		String sRating = request.getParameter("rating");
 		int ratingId = Integer.parseInt(sRating);
-
+		int userId = 1;
 		UserSession userSession = (UserSession) request.getSession()
 				.getAttribute("JSESSION");
-		int userId = userSession.getId();
+
+		if (userSession != null) {
+			userId = userSession.getId();
+		}
 
 		FilmRatingService rater = new FilmRatingService();
 		rater.rateFilm(filmId, userId, ratingId);

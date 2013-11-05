@@ -36,7 +36,7 @@
 							<li class="dropdown"><a href="#" class="dropdown-toggle"
 								data-toggle="dropdown">View and Vote<b class="caret"></b></a>
 								<ul class="dropdown-menu">
-									<li><a href="comedy.jsp">Comedy</a></li>
+									<li><a href="Comedy.jsp">Comedy</a></li>
 									<li><a href="Action.jsp">Action</a></li>
 									<li><a href="Drama.jsp">Drama</a></li>
 									<li><a href="Romance.jsp">Romance</a></li>

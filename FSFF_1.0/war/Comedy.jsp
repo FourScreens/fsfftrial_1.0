@@ -36,7 +36,7 @@
 							<li class="dropdown"><a href="#" class="dropdown-toggle"
 								data-toggle="dropdown">View and Vote<b class="caret"></b></a>
 								<ul class="dropdown-menu">
-									<li><a href="comedy.jsp">Comedy</a></li>
+									<li><a href="Comedy.jsp">Comedy</a></li>
 									<li><a href="Action.jsp">Action</a></li>
 									<li><a href="Drama.jsp">Drama</a></li>
 									<li><a href="Romance.jsp">Romance</a></li>
@@ -107,14 +107,9 @@
 
 		<div class="pagination pagination-right">
 			<ul>
-				<li><a href="#">Prev</a></li>
-				<li><a href="#">1</a></li>
-				<li><a href="#">2</a></li>
-				<li><a href="#">3</a></li>
-				<li><a href="#">4</a></li>
-				<li><a href="#">5</a></li>
-				<li><a href="#">Next</a></li>
-			</ul>
+	            <li><a href="#" id="prev" class="prevnext">« Previous</a></li>
+	            <li><a href="#" id="next" class="prevnext">Next »</a></li>
+        	</ul>
 		</div>
 	</div>
 	<!-- End: MAIN CONTENT -->
@@ -167,10 +162,12 @@
 	<!-- End: FOOTER -->
 	<script type="text/javascript" src="js/jquery.min.js"></script>
 	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="lib/jquery.raty.min.js"></script>
 	<script type="text/javascript" src="js/boot-business.js"></script>
 	<script type="text/javascript"
 		src="https://raw.github.com/wycats/handlebars.js/1.0.0/dist/handlebars.js"></script>
 	<script type="text/javascript" src="js/ViewFilm.js"></script>
+	<script type="text/javascript" src="js/pagin.js"></script>
 
 </body>
 </html>

@@ -56,7 +56,11 @@ public class SearchServlet extends HttpServlet {
 			reply = search(query, dimension, request, response);
 		}
 
-		out.write(reply);
+		request.setAttribute("filmData", reply);
+		// request.setAttribute("count", count);
+		RequestDispatcher counter = request
+				.getRequestDispatcher("/SearchView.jsp");
+		counter.forward(request, response);
 	}
 
 	protected String search(String qry, String par, HttpServletRequest request,
@@ -78,10 +82,5 @@ public class SearchServlet extends HttpServlet {
 		}
 		return (new FilmData()).toJson(filmData);
 
-		// int count = filmData.length;
-		// request.setAttribute("count", count);
-		// RequestDispatcher counter = request
-		// .getRequestDispatcher("/SearchView.jsp");
-		// counter.forward(request, response);
 	}
 }

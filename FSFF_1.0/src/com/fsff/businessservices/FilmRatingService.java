@@ -48,8 +48,12 @@ public class FilmRatingService implements FilmRating {
 
 	private long calculateRating(Vote vote, int userWeight, int starValue) {
 		long score = 0;
+		int value = 1;
+		long numberOfVotes = vote.getNumberOfVotes();
+		vote.setNumberOfVotes(++numberOfVotes);
 		if (starValue == 1) {
 			if (vote.getStarValue1() == 0) {
+
 				vote.setStarValue1(1);
 			} else {
 				vote.setStarValue1(vote.getStarValue1() + 1);
@@ -84,6 +88,7 @@ public class FilmRatingService implements FilmRating {
 				+ vote.getStarValue4() * STAR_VALUE[3] + vote.getStarValue5()
 				* STAR_VALUE[4]);
 		score = score * userWeight;
+		score = score / vote.getNumberOfVotes();
 		return score;
 	}
 }

@@ -31,8 +31,8 @@ public class SearchFilmService implements SearchFilm {
 	}
 
 	private FilmData[] searchFilms(String searchCriteria, String searchString) {
-		FilmRatingService serObj = new FilmRatingService();
-		serObj.rateFilm(1, 1,1);
+//		FilmRatingService serObj = new FilmRatingService();
+//		serObj.rateFilm(1, 1,1);
 		FilmData[] filmData = null;
 		SessionManager.createSession();
 		SessionManager.createEntityManager();

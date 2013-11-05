@@ -11,12 +11,12 @@ public class FilmDataManipulation {
 		if (films == null || films.isEmpty()) {
 			return null;
 		}
-		FilmData[] filmData = new FilmData[films.size()];
+ 		FilmData[] filmData = new FilmData[films.size()];
 		int iter = 0;
 		for (Film film : films) {
 			FilmData filmDataObject = new FilmData();
 			filmDataObject.setFilm(film.getFilmName());
-			filmDataObject.setFilmId(film.getFestivalId().getId());
+			filmDataObject.setFilmId(film.getId());
 			filmDataObject.setClipURL(film.getRoundOneClip().getClipLink());
 			filmDataObject.setCast(film.getCast());
 			filmDataObject.setDirector(film.getDirector());

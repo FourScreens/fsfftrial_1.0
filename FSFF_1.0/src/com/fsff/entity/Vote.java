@@ -23,7 +23,7 @@ public class Vote {
 	private long starValue3;
 	private long starValue4;
 	private long starValue5;
-
+	private long numberOfVotes;
 	private long score;
 
 	@OneToOne(mappedBy = "roundOneClip", optional = false)
@@ -85,6 +85,14 @@ public class Vote {
 
 	public void setStarValue5(long starValue5) {
 		this.starValue5 = starValue5;
+	}
+
+	public long getNumberOfVotes() {
+		return numberOfVotes;
+	}
+
+	public void setNumberOfVotes(long numberOfVotes) {
+		this.numberOfVotes = numberOfVotes;
 	}
 
 	public long getScore() {

@@ -25,6 +25,7 @@
 		<div class="navbar navbar-fixed-top">
 			<div class="navbar-inner">
 				<div class="container">
+
 					<a href="#" class="brand brand-bootbus">Four Screens Film
 						Festival</a>
 
@@ -78,52 +79,36 @@
 		<div class="container">
 			<form method="post" name="srchfrm" action="Search">
 				<div align=right class="search">
-					<input type="search" name="search" placeholder="Search">
-					<select name="selector" id="selector">
+					<input type="search" name="search" placeholder="Search"> <select
+						name="selector" id="selector">
 						<option value="film">Film Name</option>
 						<option value="cast">Cast</option>
 						<option value="director">Director</option>
 						<option value="writer">Writer</option>
 						<option value="producer">producer</option>
-					</select>
-					<input type="submit" value="Search" class="btn btn-primary btn-large">
+					</select> <input type="submit" value="Search"
+						class="btn btn-primary btn-large">
 				</div>
 			</form>
 
 			<div class="viewfilm">
 
 				<script id="viewFilms" type="text/x-handlebars-template">
+
           {{#each this}}
-          <div style="float:left;width:50%;">
+                     
+          <div style="float:left;width:30%;">
         <h1>{{FilmName}}<h1>
-       <div style="float:left;width:40%;margin: 0 auto;text-align:center;" class="flex-video widescreen" >
-           <!-- Button to trigger modal -->
-    <a href="#myModal" role="button" class="btn" data-toggle="modal">View Film</a>
-     
-    <!-- Modal -->
-    <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
-    <h3 id="myModalLabel">{{FilmName}}</h3>
-    </div>
-    <div class="modal-body">
-     <iframe height="400px" width="100%" src={{url}} frameborder="0" allowfullscreen=""></iframe>
-    </div>
-    <div class="modal-footer">
-    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-    
-    </div>
-    </div>
-    <img src="{{url}}" width="175" height="200" />
-   
-        </div>
-    
-        
-  <div style="float:right; width:300px" >
-     <h5><span class="label label-primary">Cast:</span><br> {{Cast}} </h5>
-       <h5><span class="label label-primary">Director:</span><br> {{Director}} </h5>
-         <h5><span class="label label-primary">Producer:</span><br> {{Producer}} </h5>
-            <h5><span class="label label-primary">Rating:</span><br> {{Rating}} </h5>
+       <div style="float:left;width:50%;margin: 0 auto;text-align:center;" class="flex-video widescreen videoContainter" >
+   <iframe name="inlineframe" src="http://www.youtube.com/embed/{{url}}" frameborder="0" scrolling="auto" width="200" height="200" marginwidth="5" marginheight="5" ></iframe>
+     </div>        
+  <div style="float:right; width:40%; height:200px; overflow:scroll;" >
+     <h6><span class="label label-primary">Cast:</span><br> {{Cast}} </h6>
+       <h6><span class="label label-primary">Director:</span><br> {{Director}} </h6>
+         <h6><span class="label label-primary">Producer:</span><br> {{Producer}} </h6>
+          <h6><span class="label label-primary">Rating:</span><br><p class="star" id="{{FilmId}}"></p>
+          <p class="star" id="num{{FilmId}}" style= "font-style:italic">({{numberOfVotes}} votes) </h6>
+                
      </div>
      </div>
 
@@ -196,10 +181,31 @@
 	<!-- End: FOOTER -->
 	<script type="text/javascript" src="js/jquery.min.js"></script>
 	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="lib/jquery.raty.min.js"></script>
 	<script type="text/javascript" src="js/boot-business.js"></script>
 	<script type="text/javascript"
 		src="https://raw.github.com/wycats/handlebars.js/1.0.0/dist/handlebars.js"></script>
 	<script type="text/javascript" src="js/ActionFilm.js"></script>
-
+	<script>
+		$('img[data-videoLoader]').on(
+				'click',
+				function() {
+					var iframe = $('<iframe></iframe>');
+					iframe.attr({
+						src : 'http://www.youtube.com/embed/'
+								+ $(this).attr('data-videoLoader'),
+						name : "inlineframe",
+						frameborder : "0",
+						scrolling : "auto",
+						width : "200",
+						height : "200",
+						marginwidth : "5",
+						marginheight : "5"
+					});
+					console.log(this);
+					$(this).hide();
+					$(this).parent('.videoContainter').append(iframe);
+				});
+	</script>
 </body>
 </html>
