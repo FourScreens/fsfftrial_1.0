@@ -7,6 +7,27 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 
 
 	<!-- Servlets -->
+
+	<servlet>
+		<servlet-name>IndexPageLeaderBoardServlet</servlet-name>
+		<servlet-class>com.fsff.presentation.IndexPageLeaderBoardServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>IndexPageLeaderBoardServlet</servlet-name>
+		<url-pattern>/indexpageleaderboard</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>IndexPageEditorPicks</servlet-name>
+		<servlet-class>com.fsff.presentation.IndexPageEditorPicksServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>IndexPageEditorPicks</servlet-name>
+		<url-pattern>/indexpageeditorpicks</url-pattern>
+	</servlet-mapping>
+
 	<servlet>
 		<servlet-name>LoginServlet</servlet-name>
 		<servlet-class>com.fsff.presentation.LoginServlet</servlet-class>
@@ -76,6 +97,131 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	<servlet-mapping>
 		<servlet-name>VotingServlet</servlet-name>
 		<url-pattern>/voting</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>AdminIndexServlet</servlet-name>
+		<servlet-class>com.fsff.admin.presentation.AdminIndexServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>AdminIndexServlet</servlet-name>
+		<url-pattern>/adminindex</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>AdminViewAllFilmsServlet</servlet-name>
+		<servlet-class>com.fsff.admin.presentation.AdminViewAllFilmsServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>AdminViewAllFilmsServlet</servlet-name>
+		<url-pattern>/adminviewallfilms</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>AdminViewRoundOneFilmsServlet</servlet-name>
+		<servlet-class>com.fsff.admin.presentation.AdminViewRoundOneFilmsServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>AdminViewRoundOneFilmsServlet</servlet-name>
+		<url-pattern>/adminviewroundonefilms</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>AdminViewRoundTwoFilmsServlet</servlet-name>
+		<servlet-class>com.fsff.admin.presentation.AdminViewRoundTwoFilmsServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>AdminViewRoundTwoFilmsServlet</servlet-name>
+		<url-pattern>/adminviewroundtwofilms</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>AdminViewRoundThreeFilmsServlet</servlet-name>
+		<servlet-class>com.fsff.admin.presentation.AdminViewRoundThreeFilmsServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>AdminViewRoundThreeFilmsServlet</servlet-name>
+		<url-pattern>/adminviewroundthreefilms</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>CreateFestival</servlet-name>
+		<servlet-class>com.fsff.admin.presentation.AdminCreateFestival</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>CreateFestival</servlet-name>
+		<url-pattern>/createfestival</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>ApproveFilms</servlet-name>
+		<servlet-class>com.fsff.admin.presentation.AdminFilmApprovalServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>ApproveFilms</servlet-name>
+		<url-pattern>/approvefilms</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>AdminLogin</servlet-name>
+		<servlet-class>com.fsff.admin.presentation.AdminLoginServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>AdminLogin</servlet-name>
+		<url-pattern>/AdminLoginServlet</url-pattern>
+	</servlet-mapping>
+
+
+	<servlet>
+		<servlet-name>AdminLogOut</servlet-name>
+		<servlet-class>com.fsff.admin.presentation.AdminLogoutServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>AdminLogOut</servlet-name>
+		<url-pattern>/AdminLogOut</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>AdminVotingServlet</servlet-name>
+		<servlet-class>com.fsff.admin.presentation.AdminVotingServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>AdminVotingServlet</servlet-name>
+		<url-pattern>/adminvoting</url-pattern>
+	</servlet-mapping>
+
+
+
+
+	<servlet>
+		<servlet-name>AdminEditorPicksServlet</servlet-name>
+		<servlet-class>com.fsff.admin.presentation.AdminEditorPicksServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>AdminEditorPicksServlet</servlet-name>
+		<url-pattern>/admineditorspick</url-pattern>
+	</servlet-mapping>
+
+
+	<servlet>
+		<servlet-name>PaypalAdmin</servlet-name>
+		<servlet-class>com.fsff.paypal.Payment</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>PaypalAdmin</servlet-name>
+		<url-pattern>/payment</url-pattern>
 	</servlet-mapping>
 
 	<!-- Default page to serve -->

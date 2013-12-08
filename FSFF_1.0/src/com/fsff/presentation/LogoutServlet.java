@@ -30,7 +30,7 @@ public class LogoutServlet extends HttpServlet {
 			HttpServletResponse response) throws IOException, ServletException {
 		System.out.println(request.getParameter("logout"));
 		response.setContentType("text/html");
-		if (request.getSession().getAttribute("JSESSION") != null) {
+		if (request.getSession().getAttribute("JSESSIONID") != null) {
 			request.getSession().invalidate();
 			request.getRequestDispatcher("/index.jsp").forward(request,
 					response);

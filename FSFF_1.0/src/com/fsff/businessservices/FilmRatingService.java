@@ -9,6 +9,7 @@ import com.fsff.entity.Film;
 import com.fsff.entity.Login;
 import com.fsff.entity.User;
 import com.fsff.entity.Vote;
+import com.fsff.entity.Votes;
 import com.fsff.sessionmanager.SessionManager;
 
 public class FilmRatingService implements FilmRating {
@@ -25,7 +26,7 @@ public class FilmRatingService implements FilmRating {
 			return;
 		}
 		Film film = (Film) filmList.get(0);
-		Vote vote = film.getVote();
+		Votes votes = film.getVotes();
 		Query userQuery = entityManager.createQuery(" from User where id='"
 				+ userId + "'");
 		List userList = userQuery.getResultList();
@@ -35,60 +36,70 @@ public class FilmRatingService implements FilmRating {
 		User user = (User) userList.get(0);
 		Login login = user.getLoginDetails();
 		int weight = login.getUserType().getUserWeight();
-		long filmRate = calculateRating(vote, weight, starValue);
-		vote.setScore(filmRate);
-		film.setVote(vote);
+		VoteRating voteRate = calculateRating(votes, weight, starValue);
+		if (voteRate != null) {
+			votes.setFinal_Rating(voteRate.rate);
+			film.setNumberOfVotes(voteRate.numberOfVotes);
+		}
+		film.setVotes(votes);
 		entityManager.getTransaction().begin();
-		entityManager.persist(vote);
+		entityManager.persist(votes);
 		entityManager.merge(film);
 		entityManager.getTransaction().commit();
 		SessionManager.closeEntityManager();
 
 	}
 
-	private long calculateRating(Vote vote, int userWeight, int starValue) {
-		long score = 0;
-		int value = 1;
-		long numberOfVotes = vote.getNumberOfVotes();
-		vote.setNumberOfVotes(++numberOfVotes);
-		if (starValue == 1) {
-			if (vote.getStarValue1() == 0) {
-
-				vote.setStarValue1(1);
-			} else {
-				vote.setStarValue1(vote.getStarValue1() + 1);
-			}
-		} else if (starValue == 2) {
-			if (vote.getStarValue2() == 0) {
-				vote.setStarValue2(1);
-			} else {
-				vote.setStarValue2(vote.getStarValue2() + 1);
-			}
-		} else if (starValue == 3) {
-			if (vote.getStarValue3() == 0) {
-				vote.setStarValue3(1);
-			} else {
-				vote.setStarValue3(vote.getStarValue3() + 1);
-			}
-		} else if (starValue == 4) {
-			if (vote.getStarValue4() == 0) {
-				vote.setStarValue4(1);
-			} else {
-				vote.setStarValue4(vote.getStarValue4() + 1);
-			}
-		} else if (starValue == 5) {
-			if (vote.getStarValue5() == 0) {
-				vote.setStarValue5(1);
-			} else {
-				vote.setStarValue5(vote.getStarValue5() + 1);
+	private VoteRating calculateRating(Votes votes, int userWeight,
+			int starValue) {
+		if (votes == null)
+			return null;
+		Vote vote = null;
+		for (Vote tempVote : votes.getVotes()) {
+			if (tempVote.getStarWeight() == userWeight) {
+				vote = tempVote;
 			}
 		}
-		score = (vote.getStarValue1() * STAR_VALUE[0] + vote.getStarValue2()
-				* STAR_VALUE[1] + vote.getStarValue3() * STAR_VALUE[2]
-				+ vote.getStarValue4() * STAR_VALUE[3] + vote.getStarValue5()
-				* STAR_VALUE[4]);
-		score = score * userWeight;
-		score = score / vote.getNumberOfVotes();
-		return score;
+		VoteRating voteRating = new VoteRating();
+		double mean = 0;
+		long numberOfVotes = 0;
+		switch (starValue) {
+		case 1:
+			vote.setStarValue1();
+			break;
+		case 2:
+			vote.setStarValue2();
+			break;
+		case 3:
+			vote.setStarValue3();
+			break;
+		case 4:
+			vote.setStarValue4();
+			break;
+		case 5:
+			vote.setStarValue5();
+			break;
+		}
+
+		for (Vote each_vote : votes.getVotes()) {
+			double numerator = each_vote.getWeightedSum();
+			numberOfVotes += each_vote.getNumberOfVotes();
+			double denominator = each_vote.getNumberOfVotes() * starValue;
+			double div = 0.0;
+			if (numerator != 0.0 && denominator != 0.0) {
+				div = numerator / denominator;
+			}
+			div = div * starValue;
+			mean = mean + div;
+		}
+
+		voteRating.rate = mean;
+		voteRating.numberOfVotes = numberOfVotes;
+		return voteRating;
 	}
+}
+
+class VoteRating {
+	double rate;
+	long numberOfVotes;
 }

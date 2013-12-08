@@ -44,14 +44,14 @@
 									<li><a href="comedy.jsp">Animation</a></li>
 									<li><a href="comedy.jsp">Horror</a></li>
 								</ul></li>
-								<li><a href="uploadfilm.jsp">Enter the Film</a></li>
+							<li><a href="uploadfilm.jsp">Enter the Film</a></li>
 							<%
-								if (request.getSession().getAttribute("JSESSION") != null) {
+								if (request.getSession().getAttribute("JSESSIONID") != null) {
 									UserSession sessionObject = (UserSession) request.getSession()
-											.getAttribute("JSESSION");
+											.getAttribute("JSESSIONID");
 									String login = sessionObject.getFirstName();
 							%>
-							
+
 							<ul class="nav pull-right">
 								<li>Welcome <%=login%>
 								</li>
@@ -164,9 +164,12 @@
 			</fieldset>
 
 		</form>
+
+
 	</div>
 	<!-- /container -->
 	<!-- End: MAIN CONTENT -->
+
 	<!-- Start: FOOTER -->
 	<footer>
 		<div class="container">

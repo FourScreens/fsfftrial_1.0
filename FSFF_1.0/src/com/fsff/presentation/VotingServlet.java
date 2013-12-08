@@ -60,7 +60,7 @@ public class VotingServlet extends HttpServlet {
 		int ratingId = Integer.parseInt(sRating);
 		int userId = 1;
 		UserSession userSession = (UserSession) request.getSession()
-				.getAttribute("JSESSION");
+				.getAttribute("JSESSIONID");
 
 		if (userSession != null) {
 			userId = userSession.getId();

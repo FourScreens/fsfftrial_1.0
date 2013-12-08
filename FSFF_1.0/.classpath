@@ -14,5 +14,6 @@
 	<classpathentry kind="lib" path="C:/Users/Kavitha/Downloads/Venkat/lib/mysql-connector-java-5.1.5-bin.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Kavitha/Downloads/Venkat/lib/servlet-api.jar"/>
 	<classpathentry kind="con" path="com.google.appengine.eclipse.core.GAE_CONTAINER"/>
+	<classpathentry kind="lib" path="C:/Users/Kavitha/Downloads/org.apache.commons.httpclient.jar/org.apache.commons.httpclient.jar"/>
 	<classpathentry kind="output" path="war/WEB-INF/classes"/>
 </classpath>

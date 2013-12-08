@@ -3,8 +3,8 @@ package com.fsff.entity;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -23,12 +23,13 @@ public class Vote {
 	private long starValue3;
 	private long starValue4;
 	private long starValue5;
+	private int starWeight;
 	private long numberOfVotes;
-	private long score;
+	private long weightedSum;
 
-	@OneToOne(mappedBy = "roundOneClip", optional = false)
-	@PrimaryKeyJoinColumn
-	private Film film;
+	@ManyToOne
+	@JoinColumn(name = "VOTES", referencedColumnName = "id")
+	private Votes votesId;
 
 	public Vote() {
 		this.starValue1 = 0;
@@ -36,7 +37,16 @@ public class Vote {
 		this.starValue3 = 0;
 		this.starValue4 = 0;
 		this.starValue5 = 0;
-		this.score = 0;
+		this.starWeight = 1;
+	}
+
+	public Vote(int starWeight) {
+		this.starValue1 = 0;
+		this.starValue2 = 0;
+		this.starValue3 = 0;
+		this.starValue4 = 0;
+		this.starValue5 = 0;
+		this.starWeight = starWeight;
 	}
 
 	public int getId() {
@@ -51,64 +61,72 @@ public class Vote {
 		return starValue1;
 	}
 
-	public void setStarValue1(long starValue1) {
-		this.starValue1 = starValue1;
+	public void setStarValue1() {
+		this.starValue1++;
+		numberOfVotes++;
 	}
 
 	public long getStarValue2() {
 		return starValue2;
 	}
 
-	public void setStarValue2(long starValue2) {
-		this.starValue2 = starValue2;
+	public void setStarValue2() {
+		this.starValue2++;
+		numberOfVotes++;
 	}
 
 	public long getStarValue3() {
 		return starValue3;
 	}
 
-	public void setStarValue3(long starValue3) {
-		this.starValue3 = starValue3;
+	public void setStarValue3() {
+		this.starValue3++;
+		numberOfVotes++;
 	}
 
 	public long getStarValue4() {
 		return starValue4;
 	}
 
-	public void setStarValue4(long starValue4) {
-		this.starValue4 = starValue4;
+	public void setStarValue4() {
+		this.starValue4++;
+		numberOfVotes++;
 	}
 
 	public long getStarValue5() {
 		return starValue5;
 	}
 
-	public void setStarValue5(long starValue5) {
-		this.starValue5 = starValue5;
+	public void setStarValue5() {
+		this.starValue5++;
+		numberOfVotes++;
+	}
+
+	public int getStarWeight() {
+		return starWeight;
+	}
+
+	public void setStarWeight(int starWeight) {
+		this.starWeight = starWeight;
 	}
 
 	public long getNumberOfVotes() {
 		return numberOfVotes;
 	}
 
-	public void setNumberOfVotes(long numberOfVotes) {
-		this.numberOfVotes = numberOfVotes;
+	public Votes getVotes() {
+		return votesId;
 	}
 
-	public long getScore() {
-		return score;
+	public void setVotes(Votes votes) {
+		this.votesId = votes;
 	}
 
-	public void setScore(long score) {
-		this.score = score;
+	public long getWeightedSum() {
+		this.weightedSum = 0;
+		this.weightedSum = this.starValue1 * 1 + this.starValue2 * 2
+				+ this.starValue3 * 3 + this.starValue4 * 4 + this.starValue5
+				* 5;
+		return weightedSum;
 	}
-
-	public Film getFilm() {
-		return film;
-	}
-
-	public void setFilm(Film film) {
-		this.film = film;
-	}
-
 }

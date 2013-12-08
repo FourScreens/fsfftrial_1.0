@@ -51,7 +51,7 @@ public class LoginServlet extends HttpServlet {
 			} else {
 				UserSession userSession = authObject.login(userLogin, userPassword);
 				if (userSession != null) {
-					request.getSession().setAttribute("JSESSION", userSession);
+					request.getSession().setAttribute("JSESSIONID", userSession);
 					request.getRequestDispatcher("index.jsp").forward(
 							request, response);;
 					

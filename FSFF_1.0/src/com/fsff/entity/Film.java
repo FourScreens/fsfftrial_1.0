@@ -1,6 +1,6 @@
 package com.fsff.entity;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -59,13 +59,13 @@ public class Film {
 
 	private Date fullMovieReceivedDate;
 
-	private String status;
-
 	private Date lastStatusUpdateDate;
 
 	@OneToOne
 	@PrimaryKeyJoinColumn
-	private Vote vote;
+	private Votes votes;
+
+	private long numberOfVotes;
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "id")
 	private Set<Comment> comments;
@@ -74,6 +74,14 @@ public class Film {
 	@JoinColumn(name = "FESTIVAL", referencedColumnName = "id")
 	private Festival festivalId;
 
+	private String status;
+
+	private String roundOneStatus;
+
+	private String roundTwoStatus;
+
+	private String roundThreeStatus;
+
 	@ManyToOne
 	@JoinColumn(name = "ADMIN", referencedColumnName = "id")
 	private Admin approvedBy;
@@ -81,6 +89,12 @@ public class Film {
 	@ManyToOne
 	@JoinColumn(name = "USER", referencedColumnName = "id")
 	private User filmMaker;
+
+	private String filmUID;
+
+	private boolean editorPicks;
+
+	private boolean paid;
 
 	public int getId() {
 		return id;
@@ -202,6 +216,30 @@ public class Film {
 		this.status = status;
 	}
 
+	public String getRoundOneStatus() {
+		return roundOneStatus;
+	}
+
+	public void setRoundOneStatus(String roundOneStatus) {
+		this.roundOneStatus = roundOneStatus;
+	}
+
+	public String getRoundTwoStatus() {
+		return roundTwoStatus;
+	}
+
+	public void setRoundTwoStatus(String roundTwoStatus) {
+		this.roundTwoStatus = roundTwoStatus;
+	}
+
+	public String getRoundThreeStatus() {
+		return roundThreeStatus;
+	}
+
+	public void setRoundThreeStatus(String roundThreeStatus) {
+		this.roundThreeStatus = roundThreeStatus;
+	}
+
 	public Date getLastStatusUpdateDate() {
 		return lastStatusUpdateDate;
 	}
@@ -242,12 +280,44 @@ public class Film {
 		this.filmMaker = filmMaker;
 	}
 
-	public Vote getVote() {
-		return vote;
+	public Votes getVotes() {
+		return votes;
 	}
 
-	public void setVote(Vote vote) {
-		this.vote = vote;
+	public void setVotes(Votes votes) {
+		this.votes = votes;
+	}
+
+	public long getNumberOfVotes() {
+		return numberOfVotes;
+	}
+
+	public void setNumberOfVotes(long numberOfVotes) {
+		this.numberOfVotes = numberOfVotes;
+	}
+
+	public String getFilmUID() {
+		return filmUID;
+	}
+
+	public void setFilmUID(String filmUID) {
+		this.filmUID = filmUID;
+	}
+
+	public boolean isEditorPicks() {
+		return editorPicks;
+	}
+
+	public void setEditorPicks(boolean editorPicks) {
+		this.editorPicks = editorPicks;
+	}
+
+	public boolean isPaid() {
+		return paid;
+	}
+
+	public void setPaid(boolean paid) {
+		this.paid = paid;
 	}
 
 }

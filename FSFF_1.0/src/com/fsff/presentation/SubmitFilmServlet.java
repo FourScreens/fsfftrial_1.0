@@ -1,7 +1,6 @@
 package com.fsff.presentation;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -54,38 +53,31 @@ public class SubmitFilmServlet extends HttpServlet {
 		String roundTwoClip = request.getParameter("roundTwoClip");
 		String roundThreeClip = request.getParameter("roundThreeClip");
 		int userId = 0;
-		if (request.getSession().getAttribute("JSESSION") != null) {
+		if (request.getSession().getAttribute("JSESSIONID") != null) {
 			FilmSubmissionService filmSubmissionObject = new FilmSubmissionService();
 			UserSession userSession = (UserSession) request.getSession()
-					.getAttribute("JSESSION");
+					.getAttribute("JSESSIONID");
 			userId = userSession.getId();
-			filmSubmissionObject.submitFilm(filmName, genre, filmDescription,
-					cast, director, producer, writer, roundOneClip,
-					roundTwoClip, roundThreeClip, userId);
-			request.getRequestDispatcher("/index.jsp").forward(request,
-					response);
+			String message = filmSubmissionObject.submitFilm(filmName, genre,
+					filmDescription, cast, director, producer, writer,
+					roundOneClip, roundTwoClip, roundThreeClip, userId);
+			if (message.contains(":")) {
+				String msg = message.substring(message.indexOf(":"));
+				request.getSession().setAttribute("Msg", msg);
+				request.getRequestDispatcher("/uploadfilm.jsp").forward(
+						request, response);
+			} else {
+				request.getSession().setAttribute("UFILMID", message);
+				request.getSession().setAttribute("FILMNAME", filmName);
+				request.getRequestDispatcher("/payment.jsp").forward(request,
+						response);
+			}
+			// request.getRequestDispatcher("/index.jsp").forward(request,
+			// response);
 		} else {
 			request.getRequestDispatcher("signin.jsp").forward(request,
 					response);
 
 		}
-
-		String title = "Film Submission!";
-
-		response.setContentType("text/html");
-		PrintWriter out = response.getWriter();
-
-		String docType = "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0 "
-				+ "Transitional//EN\">\n";
-
-		out.println(docType
-				+ "<HTML>\n"
-				+ "<HEAD><TITLE>"
-				+ title
-				+ "</TITLE></HEAD>\n"
-				+ "<H3 ALIGN=CENTER> Congratulations! You have successfully submitted your film clips!</H3>\n"
-				+ "<H3 ALIGN=CENTER> You will be notified on the status of your film entering the competition in a week!</H3>\n"
-				+ "<H3 ALIGN=CENTER> Please visit the <a href=\"index.jsp\"> View film page </a> after a week to view your film in the competition, if you are selected/notified!</H3>\n"
-				+ "<H3 ALIGN=CENTER> Go back to the <a href=\"index.jsp\">Home page</a> </H3>\n");
 	}
 }

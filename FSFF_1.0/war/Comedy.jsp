@@ -16,9 +16,32 @@
 <link href="css/font-awesome-ie7.css" rel="stylesheet">
 <!-- Bootbusiness theme -->
 <link href="css/boot-business.css" rel="stylesheet">
+
+</style>
 </head>
 <body>
 	<%@ page import="com.fsff.ui.entity.UserSession"%>
+	<!-- Start: MODAL -->
+
+	<div id="viewFilmClipDialog" class="modal hide fade" tabindex="-1"
+		role="dialog">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal">x</button>
+			<h3>Video</h3>
+		</div>
+		<div class="modal-body">
+			<div
+				style="float: left; width: 50%; margin: 0 auto; text-align: center;"
+				class="flex-video widescreen videoContainter">
+				<iframe src="" style="zoom: 0.60" frameborder="0" height="400"
+					width="500"></iframe>
+			</div>
+		</div>
+		<div class="modal-footer">
+			<button class="btn" data-dismiss="modal">OK</button>
+		</div>
+	</div>
+	<!-- End: MODAL -->
 	<!-- Start: HEADER -->
 	<header>
 		<!-- Start: Navigation wrapper -->
@@ -31,12 +54,12 @@
 					<!-- Start: Primary navigation -->
 					<div class="nav-collapse collapse">
 						<ul class="nav pull-right">
-							<li class="active"><a href="index.jsp">Home</a></li>
+							<li><a href="index.jsp">Home</a></li>
 							<li><a href="#about">About</a></li>
 							<li class="dropdown"><a href="#" class="dropdown-toggle"
 								data-toggle="dropdown">View and Vote<b class="caret"></b></a>
 								<ul class="dropdown-menu">
-									<li><a href="Comedy.jsp">Comedy</a></li>
+									<li class="active"><a href="Comedy.jsp">Comedy</a></li>
 									<li><a href="Action.jsp">Action</a></li>
 									<li><a href="Drama.jsp">Drama</a></li>
 									<li><a href="Romance.jsp">Romance</a></li>
@@ -46,9 +69,9 @@
 								</ul></li>
 							<li><a href="uploadfilm.jsp">Enter the Film</a></li>
 							<%
-								if (request.getSession().getAttribute("JSESSION") != null) {
+								if (request.getSession().getAttribute("JSESSIONID") != null) {
 									UserSession sessionObject = (UserSession) request.getSession()
-											.getAttribute("JSESSION");
+											.getAttribute("JSESSIONID");
 									String login = sessionObject.getFirstName();
 							%>
 
@@ -74,43 +97,43 @@
 	</header>
 	<!-- End: HEADER -->
 	<!-- Start: MAIN CONTENT -->
+
 	<div class="content">
 		<div class="container">
 			<div class="viewfilm">
-				
-              <script id="viewFilms" type="text/x-handlebars-template">
+
+				<script id="viewFilms" type="text/x-handlebars-template">
 
           {{#each this}}
-                     
-          <div style="float:left;width:30%;">
-        <h1>{{FilmName}}<h1>
-       <div style="float:left;width:50%;margin: 0 auto;text-align:center;" class="flex-video widescreen videoContainter" >
-       <img src="http://img.youtube.com/vi/{{url}}/hqdefault.jpg" style="height:200px; width:200px" data-videoLoader="{{url}}">
-   
-     </div>        
-  <div style="float:right; width:40%; height:200px; overflow:scroll;" >
-     <h6><span class="label label-primary">Cast:</span><br> {{Cast}} </h6>
-       <h6><span class="label label-primary">Director:</span><br> {{Director}} </h6>
-         <h6><span class="label label-primary">Producer:</span><br> {{Producer}} </h6>
-          <h6><span class="label label-primary">Rating:</span><br><p class="star" id="{{FilmId}}"></p>
-          <p class="star" id="num{{FilmId}}" style= "font-style:italic">({{numberOfVotes}} votes) </h6>
-                
-     </div>
-     </div>
+              
+           <div id="element{{FilmId}}" data-toggle="tooltip" data-placement="top" title="" data-original-title="<p>CAST:{{Cast}} </p><p>DIRECTOR:{{Director}} </p><p>PRODUCER: {{Producer}}</p>" style="float:left;margin:25px;" class="flex-video widescreen videoContainter" > 
+          <h4> {{FilmName}}</h4>
+       <img src="http://img.youtube.com/vi/{{url}}/hqdefault.jpg" style="height:200px; width:200px" class="clearfix" >
+       <div><a data-toggle="modal" data-id={{url}} data-ratingId={{Rating}} title="Add this item" class="open-viewer" href="#viewFilmClipDialog">View Film</a></div>
+       <p class="star" id="{{FilmId}}"></p>
+       </div>
 
      {{/each}}
      </script>
 
 
+
 			</div>
 		</div>
 
-		<div class="pagination pagination-right">
-			<ul>
-	            <li><a href="#" id="prev" class="prevnext">« Previous</a></li>
-	            <li><a href="#" id="next" class="prevnext">Next »</a></li>
-        	</ul>
-		</div>
+
+	</div>
+	<div class="pagination pagination-right">
+		<ul>
+			<li><a href="#">Prev</a></li>
+			<li><a href="#">1</a></li>
+			<li><a href="#">2</a></li>
+			<li><a href="#">3</a></li>
+			<li><a href="#">4</a></li>
+			<li><a href="#">5</a></li>
+			<li><a href="#">Next</a></li>
+		</ul>
+	</div>
 	</div>
 	<!-- End: MAIN CONTENT -->
 	<!-- Start: FOOTER -->
@@ -160,14 +183,15 @@
 		</div>
 	</footer>
 	<!-- End: FOOTER -->
-	<script type="text/javascript" src="js/jquery.min.js"></script>
-	<script type="text/javascript" src="js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="lib/jquery.raty.min.js"></script>
-	<script type="text/javascript" src="js/boot-business.js"></script>
-	<script type="text/javascript"
-		src="https://raw.github.com/wycats/handlebars.js/1.0.0/dist/handlebars.js"></script>
-	<script type="text/javascript" src="js/ViewFilm.js"></script>
-	<script type="text/javascript" src="js/pagin.js"></script>
 
+
+
+
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script src="lib/jquery.raty.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/boot-business.js"></script>
+	<script type="text/javascript" src="js/handlebars.js"></script>
+	<script type="text/javascript" src="js/ViewFilm.js"></script>
 </body>
 </html>

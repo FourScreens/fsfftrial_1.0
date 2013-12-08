@@ -19,6 +19,28 @@
 </head>
 <body>
 	<%@ page import="com.fsff.ui.entity.UserSession"%>
+
+	<!-- Start: MODAL -->
+
+	<div id="viewFilmClipDialog" class="modal hide fade" tabindex="-1"
+		role="dialog">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal">x</button>
+			<h3>Video</h3>
+		</div>
+		<div class="modal-body">
+			<div
+				style="float: left; width: 50%; margin: 0 auto; text-align: center;"
+				class="flex-video widescreen videoContainter">
+				<iframe src="" style="zoom: 0.60" frameborder="0" height="400"
+					width="500"></iframe>
+			</div>
+		</div>
+		<div class="modal-footer">
+			<button class="btn" data-dismiss="modal">OK</button>
+		</div>
+	</div>
+	<!-- End: MODAL -->
 	<!-- Start: HEADER -->
 	<header>
 		<!-- Start: Navigation wrapper -->
@@ -44,14 +66,14 @@
 									<li><a href="Animation.jsp">Animation</a></li>
 									<li><a href="Horror.jsp">Horror</a></li>
 								</ul></li>
-								<li><a href="uploadfilm.jsp">Enter the Film</a></li>
+							<li><a href="uploadfilm.jsp">Enter the Film</a></li>
 							<%
-								if (request.getSession().getAttribute("JSESSION") != null) {
+								if (request.getSession().getAttribute("JSESSIONID") != null) {
 									UserSession sessionObject = (UserSession) request.getSession()
-											.getAttribute("JSESSION");
+											.getAttribute("JSESSIONID");
 									String login = sessionObject.getFirstName();
 							%>
-							
+
 							<ul class="nav pull-right">
 								<li>Welcome <%=login%>
 								</li>
@@ -75,87 +97,56 @@
 	<!-- End: HEADER -->
 
 	<!-- Start: MAIN CONTENT -->
+	<!-- Start: popular films -->
 	<div class="content">
-		<h1 align="center">FOUR SCREENS FILM FESTIVAL</h1>
-		<br> <br>
-		<!-- Start: slider -->
-		<div class="slider">
-			<div class="container-fluid">
-				<div id="heroSlider" class="carousel slide">
-					<div class="carousel-inner">
-						<div class="active item">
-							<div class="hero-unit">
-								<div class="row-fluid">
-									<div class="span7 marketting-info">
-										<h2>EDITOR'S PICK</h2>
-										<p>Film name and description</p>
-										<h3>
-											<a href="product.html" class="btn btn-primary">view now</a>
-										</h3>
-									</div>
-									<div class="span5">
-										<img src="img/placeholder.jpg" class="thumbnail">
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="item">
-							<div class="hero-unit">
-								<div class="row-fluid">
-									<div class="span7 marketting-info">
-										<h2>EDITOR'S PICK</h2>
-										<p>Film name and description</p>
-										<h3>
-											<a href="service.html" class="btn btn-primary">view now</a>
-										</h3>
-									</div>
-									<div class="span5">
-										<img src="img/placeholder.jpg" class="thumbnail">
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="item">
-							<div class="hero-unit">
-								<div class="row-fluid">
-									<div class="span7 marketting-info">
-										<h2>EDITOR'S PICK</h2>
-										<p>Film name and description</p>
-										<h3>
-											<a href="#" class="btn btn-primary ">View now</a>
-										</h3>
-									</div>
-									<div class="span5">
-										<img src="img/placeholder.jpg" class="thumbnail">
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="item">
-							<div class="hero-unit">
-								<div class="row-fluid">
-									<div class="span7 marketting-info">
-										<h2>EDITOR'S PICK</h2>
-										<p>Film name and descritpion</p>
-										<h3>
-											<a href="#" class="btn btn-primary">View now</a>
 
-										</h3>
-									</div>
-									<div class="span5">
-										<img src="img/placeholder.jpg" class="thumbnail">
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<a class="left carousel-control" href="#heroSlider"
-						data-slide="prev"><</a> <a class="right carousel-control"
-						href="#heroSlider" data-slide="next">></a>
+		<div class="container">
+			<div class="page-header">
+				<h2>Popular Movies</h2>
+			</div>
+			<div class="row-fluid">
+
+				<div class="viewfilmleaderboard thumbnails">
+					<script id="viewFilmslead" type="text/x-handlebars-template">
+          					{{#each this}}
+               					<div id="element{{FilmId}}" data-toggle="tooltip" data-placement="top" title="" data-original-title="<p>CAST:{{Cast}} </p><p>DIRECTOR:{{Director}} </p><p>PRODUCER: {{Producer}}</p>" style="float:left;margin:25px;" class="flex-video widescreen videoContainter" >
+          						<h4> {{FilmName}}</h4>
+       							<img src="http://img.youtube.com/vi/{{url}}/hqdefault.jpg" style="height:200px; width:200px" class="clearfix" >
+       							<div><a data-toggle="modal" data-id={{url}} data-ratingId={{Rating}} title="Add this item" class="open-viewer" href="#viewFilmClipDialog">View Film</a></div>
+       							<p class="star" id="{{FilmId}}"></p>
+       							</div> 
+     						{{/each}}
+     					</script>
 				</div>
 			</div>
 		</div>
-		<!-- End: slider -->
+		<!-- End: popular films -->
+		<!-- Start: Editor Pics -->
+		<div class="container">
+			<div class="page-header">
+				<h2>Editor's Picks</h2>
+			</div>
+			<div class="row-fluid">
+
+				<div class="viewfilmeditorpicks thumbnails">
+					<script id="viewFilmseditor" type="text/x-handlebars-template">
+          				{{#each this}}
+               				<div id="lelement{{FilmId}}" data-toggle="tooltip" data-placement="top" title="" data-original-title="<p>CAST:{{Cast}} </p><p>DIRECTOR:{{Director}} </p><p>PRODUCER: {{Producer}}</p>" style="float:left;margin:25px;" class="flex-video widescreen videoContainter" >
+          					<h4> {{FilmName}}</h4>
+       						<img src="http://img.youtube.com/vi/{{url}}/hqdefault.jpg" style="height:200px; width:200px" class="clearfix" >
+       						<div><a data-toggle="modal" data-id={{url}} data-ratingId={{Rating}} title="Add this item" class="open-viewer" href="#viewFilmClipDialog">View Film</a></div>
+       						<p class="star" id="{{FilmId}}"></p>
+       						</div>   
+						{{/each}}
+     					</script>
+				</div>
+
+			</div>
+
+		</div>
+
+		<!-- ENd popular-->
+
 		<!-- Start: PRODUCT LIST -->
 		<div class="container">
 			<div class="page-header">
@@ -191,27 +182,39 @@
 							</div>
 						</div>
 					</li>
-					<li class="span4">
-						<div class="thumbnail">
-							<img src="img/placeholder-360x200.jpg" alt="product name">
-							<div class="caption">
-								<h3>Contact US</h3>
-								<p>Contact US</p>
-							</div>
-							<div class="widget-footer">
-								<p>
-									<a href="product.html" class="btn btn-primary">Read more</a>
-								</p>
-							</div>
-						</div>
-					</li>
+					<li class="span4"><iframe
+							src="//www.facebook.com/plugins/likebox.php?href=https%3A%2F%2Fwww.facebook.com%2Fpages%2FFour-Screens-Film-Festival%2F627616933962800&amp;width=295&amp;height=320&amp;colorscheme=light&amp;show_faces=true&amp;header=true&amp;stream=false&amp;show_border=true"
+							scrolling="no" frameborder="0"
+							style="border: none; overflow: hidden; width: 295px; height: 320px;"
+							allowTransparency="true"></iframe> <br> <br>
+						<div align="left">
+							<a href="https://twitter.com/fest_four"
+								class="twitter-follow-button" data-show-count="false"
+								data-size="large">Follow @fest_four</a>
+							<script>
+								!function(d, s, id) {
+									var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/
+											.test(d.location) ? 'http'
+											: 'https';
+									if (!d.getElementById(id)) {
+										js = d.createElement(s);
+										js.id = id;
+										js.src = p
+												+ '://platform.twitter.com/widgets.js';
+										fjs.parentNode.insertBefore(js, fjs);
+									}
+								}(document, 'script', 'twitter-wjs');
+							</script>
+						</div></li>
 				</ul>
 			</div>
-
 		</div>
-		<!-- End: PRODUCT LIST -->
 	</div>
+	<!-- End: PRODUCT LIST -->
+
+
 	<!-- End: MAIN CONTENT -->
+
 	<!-- Start: FOOTER -->
 	<footer>
 		<div class="container">
@@ -227,7 +230,7 @@
 							<li><a href="news.html">News</a></li>
 							<li><a href="events.html">Events</a></li>
 
-							<ul>
+						</ul>
 					</nav>
 				</div>
 				<div class="span2">
@@ -259,8 +262,14 @@
 		</div>
 	</footer>
 	<!-- End: FOOTER -->
+
 	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script src="lib/jquery.raty.min.js"></script>
 	<script type="text/javascript" src="js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="js/boot-business.js"></script>
+	<script type="text/javascript" src="js/handlebars.js"></script>
+	<script type="text/javascript" src="js/index.js"></script>
 </body>
 </html>
+
+

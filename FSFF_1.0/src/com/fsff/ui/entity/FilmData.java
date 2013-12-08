@@ -7,9 +7,6 @@ import com.google.gson.GsonBuilder;
 
 public class FilmData implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	public String film;

@@ -20,6 +20,12 @@ public class Admin {
 	@GenericGenerator(name = "increment", strategy = "increment")
 	private int id;
 
+	private String login;
+
+	private String password;
+
+	private int weight;
+
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "approvedBy")
 	private Set<Film> approvedFilms;
 
@@ -29,6 +35,30 @@ public class Admin {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public String getLogin() {
+		return login;
+	}
+
+	public void setLogin(String login) {
+		this.login = login;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public int getWeight() {
+		return weight;
+	}
+
+	public void setWeight(int weight) {
+		this.weight = weight;
 	}
 
 	public Set<Film> getApprovedFilms() {

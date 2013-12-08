@@ -54,7 +54,6 @@ public class ViewFilmServlet extends HttpServlet {
 		if (genre != null) {
 			reply = viewFilm(genre);
 		}
-
 		out.write(reply);
 	}
 
