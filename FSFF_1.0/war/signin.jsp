@@ -18,7 +18,7 @@
 <link href="css/boot-business.css" rel="stylesheet">
 </head>
 <body>
-<%@ page import="com.fsff.ui.entity.UserSession"%>
+	<%@ page import="com.fsff.ui.entity.UserSession"%>
 	<!-- Start: HEADER -->
 	<header>
 		<!-- Start: Navigation wrapper -->
@@ -36,36 +36,41 @@
 							<li class="dropdown"><a href="#" class="dropdown-toggle"
 								data-toggle="dropdown">View and Vote<b class="caret"></b></a>
 								<ul class="dropdown-menu">
-									<li><a href="comedy.jsp">Comedy</a></li>
-									<li><a href="comedy.jsp">Action</a></li>
-									<li><a href="comedy.jsp">Drama</a></li>
-									<li><a href="comedy.jsp">Romance</a></li>
-									<li><a href="comedy.jsp">Thriller</a></li>
-									<li><a href="comedy.jsp">Animation</a></li>
-									<li><a href="comedy.jsp">Horror</a></li>
+									<li><a href="Comedy.jsp">Comedy</a></li>
+									<li><a href="Action.jsp">Action</a></li>
+									<li><a href="Drama.jsp">Drama</a></li>
+									<li><a href="Romance.jsp">Romance</a></li>
+									<li><a href="Thriller.jsp">Thriller</a></li>
+									<li><a href="Animation.jsp">Animation</a></li>
+									<li><a href="Horror.jsp">Horror</a></li>
 								</ul></li>
-								<li><a href="uploadfilm.jsp">Enter the Film</a></li>
+							<li><a href="uploadfilm.jsp">Enter the Film</a></li>
+
 							<%
-								if (request.getSession().getAttribute("JSESSION") != null) {
-									UserSession sessionObject = (UserSession) request.getSession()
-											.getAttribute("JSESSION");
-									String login = sessionObject.getFirstName();
+								if (request.getSession().getAttribute("JSESSIONID") == null) {
 							%>
-							
-							<ul class="nav pull-right">
-								<li>Welcome <%=login%>
-								</li>
-								<li><a class="active" href="LogOut" name="logout">Logout
-								</a></li>
-							</ul>
-							<%
-								} else {
-							%>
-							<li><a href="signin.jsp">Sign in</a></li>
-							<%
-								}
-							%>
+							<li class="active"><a href="signin.jsp">Sign in</a></li>
 						</ul>
+						<%
+							} else if (request.getSession().getAttribute("JSESSIONID") != null) {
+								UserSession sessionObject = (UserSession) request.getSession()
+										.getAttribute("JSESSIONID");
+								String login = sessionObject.getFirstName();
+						%>
+
+						<ul class="nav pull-right">
+							<li class="dropdown"><a href="#" class="dropdown-toggle"
+								data-toggle="dropdown">Welcome <%=login%> <b class="caret"></b></a>
+								<ul class="dropdown-menu">
+									<li><a class="active" href="LogOut" name="logout">Logout
+									</a></li>
+								</ul></li>
+						</ul>
+
+						<%
+							}
+						%>
+
 					</div>
 				</div>
 			</div>

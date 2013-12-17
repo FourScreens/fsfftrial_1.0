@@ -61,12 +61,13 @@
 					<a class="brand" href="adminindex.jsp">FSFF Admin</a>
 					<div class="nav-collapse collapse">
 						<ul class="nav">
-							<li class="active"><a href="adminindex.jsp">Home</a></li>
+							<li><a href="adminindex.jsp">Home</a></li>
 							<li><a href="createfestival.jsp">Festival</a></li>
 							<li class="dropdown"><a href="#" class="dropdown-toggle"
 								data-toggle="dropdown">Film <b class="caret"></b></a>
 								<ul class="dropdown-menu">
-									<li><a href="filmapproval.jsp">Submitted Films</a></li>
+									<li class="active"><a href="filmapproval.jsp">Submitted
+											Films</a></li>
 									<li class="divider"></li>
 									<li><a href="filmapprovalround1.jsp">Round 1</a></li>
 									<li><a href="filmapprovalround2.jsp">Round 2</a></li>
@@ -107,6 +108,18 @@
 		<button type="button" class="close">x</button>
 		<div class="container" id="display-message">Yo</div>
 	</div>
+	<%
+		if (request.getAttribute("message") != null) {
+			String message = (String) request.getAttribute("message");
+	%>
+	<div class="alert fade in" id="display-success" style="display: block;">
+		<button type="button" class="close">x</button>
+		<div class="container" id="display-approval-message"><%=message%></div>
+	</div>
+
+	<%
+		}
+	%>
 
 	<div class="container" id="tab4">
 		<div class="viewfilms">

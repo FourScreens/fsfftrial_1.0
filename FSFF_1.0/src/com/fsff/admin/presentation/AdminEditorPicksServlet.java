@@ -45,7 +45,7 @@ public class AdminEditorPicksServlet extends HttpServlet {
 		AdminService adminService = new AdminService();
 		String msg = "";
 		if (selected != null) {
-			adminService.setEditorsPick(filmId);
+			adminService.setEditorsPick(filmId, selected);
 		}
 
 		request.setAttribute("message", msg);

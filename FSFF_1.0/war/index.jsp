@@ -32,8 +32,8 @@
 			<div
 				style="float: left; width: 50%; margin: 0 auto; text-align: center;"
 				class="flex-video widescreen videoContainter">
-				<iframe src="" style="zoom: 0.60" frameborder="0" height="400"
-					width="500"></iframe>
+				<iframe id="dialogIFrame" src="" style="zoom: 0.60" frameborder="0"
+					height="400" width="500"></iframe>
 			</div>
 		</div>
 		<div class="modal-footer">
@@ -67,27 +67,32 @@
 									<li><a href="Horror.jsp">Horror</a></li>
 								</ul></li>
 							<li><a href="uploadfilm.jsp">Enter the Film</a></li>
-							<%
-								if (request.getSession().getAttribute("JSESSIONID") != null) {
-									UserSession sessionObject = (UserSession) request.getSession()
-											.getAttribute("JSESSIONID");
-									String login = sessionObject.getFirstName();
-							%>
 
-							<ul class="nav pull-right">
-								<li>Welcome <%=login%>
-								</li>
-								<li><a class="active" href="LogOut" name="logout">Logout
-								</a></li>
-							</ul>
 							<%
-								} else {
+								if (request.getSession().getAttribute("JSESSIONID") == null) {
 							%>
 							<li><a href="signin.jsp">Sign in</a></li>
-							<%
-								}
-							%>
 						</ul>
+						<%
+							} else if (request.getSession().getAttribute("JSESSIONID") != null) {
+								UserSession sessionObject = (UserSession) request.getSession()
+										.getAttribute("JSESSIONID");
+								String login = sessionObject.getFirstName();
+						%>
+
+						<ul class="nav pull-right">
+							<li class="dropdown"><a href="#" class="dropdown-toggle"
+								data-toggle="dropdown">Welcome <%=login%> <b class="caret"></b></a>
+								<ul class="dropdown-menu">
+									<li><a class="active" href="LogOut" name="logout">Logout
+									</a></li>
+								</ul></li>
+						</ul>
+
+						<%
+							}
+						%>
+
 					</div>
 				</div>
 			</div>

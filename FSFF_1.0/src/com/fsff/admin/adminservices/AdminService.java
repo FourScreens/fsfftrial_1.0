@@ -34,6 +34,8 @@ public class AdminService implements Admin {
 	private static final String APPROVED = "Approved";
 	private static final String RECEIVED = "Received";
 	private static final String PENDING = "Pending";
+	private static final String EDITOR_SELECTED = "selected";
+	private static final String EDITOR_REMOVED = "removed";
 
 	public AdminIndexData getAdminIndex() {
 		AdminIndexData data = new AdminIndexData();
@@ -516,7 +518,11 @@ public class AdminService implements Admin {
 		}
 		entityManager.getTransaction().commit();
 		SessionManager.closeEntityManager();
-		successMsg = "Films Approved !!!";
+		if (approvalStatus.equals(APPROVED)) {
+			successMsg = "Film(s) Approved !!!";
+		} else {
+			successMsg = "Film(s) Rejected !!!";
+		}
 		return successMsg;
 	}
 
@@ -642,7 +648,7 @@ public class AdminService implements Admin {
 		return msg;
 	}
 
-	public void setEditorsPick(String[] filmId) {
+	public void setEditorsPick(String[] filmId, String status) {
 		List<String> filmList = Arrays.asList(filmId);
 		SessionManager.createSession();
 		SessionManager.createEntityManager();
@@ -659,7 +665,11 @@ public class AdminService implements Admin {
 		for (Film film : allFilms) {
 			String id = "" + film.getId();
 			if (filmList.contains(id)) {
-				film.setEditorPicks(true);
+				if (status.equals(EDITOR_SELECTED)) {
+					film.setEditorPicks(true);
+				} else {
+					film.setEditorPicks(false);
+				}
 				editorPicks.add(film);
 			}
 		}

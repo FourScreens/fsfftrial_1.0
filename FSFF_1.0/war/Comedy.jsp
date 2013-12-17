@@ -100,6 +100,19 @@
 
 	<div class="content">
 		<div class="container">
+			<form method="post" name="srchfrm" action="Search">
+				<div align=right class="search">
+					<input type="search" name="search" placeholder="Search"> <select
+						name="selector" id="selector">
+						<option value="film">Film Name</option>
+						<option value="cast">Cast</option>
+						<option value="director">Director</option>
+						<option value="writer">Writer</option>
+						<option value="producer">producer</option>
+					</select> <input type="submit" value="Search"
+						class="btn btn-primary btn-large">
+				</div>
+			</form>
 			<div class="viewfilm">
 
 				<script id="viewFilms" type="text/x-handlebars-template">

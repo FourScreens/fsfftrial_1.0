@@ -154,6 +154,7 @@
     					</table>
   						<div>
         					<button type="submit " class="btn btn-success" name="select" value="selected">Add to Editor's Picks</button> 
+							<button type="submit " class="btn btn-danger" name="select" value="removed">Remove from Editor's Picks</button>
     					</div>	
 				
  				</form>

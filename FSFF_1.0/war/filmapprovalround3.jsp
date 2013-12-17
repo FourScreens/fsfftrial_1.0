@@ -68,7 +68,8 @@
 									<li class="divider"></li>
 									<li><a href="filmapprovalround1.jsp">Round 1</a></li>
 									<li><a href="filmapprovalround2.jsp">Round 2</a></li>
-									<li><a href="filmapprovalround3.jsp">Round 3</a></li>
+									<li class="active"><a href="filmapprovalround3.jsp">Round
+											3</a></li>
 								</ul></li>
 							<li><a href="editorpicks.jsp">Editor's Picks</a></li>
 						</ul>

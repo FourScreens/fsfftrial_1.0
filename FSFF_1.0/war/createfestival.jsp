@@ -39,8 +39,8 @@
 					<a class="brand" href="adminindex.jsp">FSFF Admin</a>
 					<div class="nav-collapse collapse">
 						<ul class="nav">
-							<li class="active"><a href="adminindex.jsp">Home</a></li>
-							<li><a href="createfestival.jsp">Festival</a></li>
+							<li><a href="adminindex.jsp">Home</a></li>
+							<li class="active"><a href="createfestival.jsp">Festival</a></li>
 							<li class="dropdown"><a href="#" class="dropdown-toggle"
 								data-toggle="dropdown">Film <b class="caret"></b></a>
 								<ul class="dropdown-menu">

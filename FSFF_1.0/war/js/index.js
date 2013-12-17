@@ -85,7 +85,7 @@ var updateRating = function(rating) {
 
 $(document).on("click", ".open-viewer", function() {
 	var vidId = $(this).data('id');
-	$('iframe').attr("src", 'http://www.youtube.com/embed/' + vidId);
+	$('#dialogIFrame').attr("src", 'http://www.youtube.com/embed/' + vidId);
 
 });
 

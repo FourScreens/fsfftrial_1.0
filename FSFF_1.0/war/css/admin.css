@@ -15,3 +15,7 @@ body {
 .row-fluid>.span-fixed-sidebar {
 	margin-left: 150px;
 }
+
+li {
+	font-size: 1.0em;
+}
