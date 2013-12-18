@@ -45,11 +45,11 @@
 									<li><a href="Horror.jsp">Horror</a></li>
 								</ul></li>
 							<li><a href="uploadfilm.jsp">Enter the Film</a></li>
-
+							<li><a href="Help.jsp">Help</a></li>
 							<%
 								if (request.getSession().getAttribute("JSESSIONID") == null) {
 							%>
-							<li class="active"><a href="signin.jsp">Sign in</a></li>
+							<li><a href="signin.jsp">Sign in</a></li>
 						</ul>
 						<%
 							} else if (request.getSession().getAttribute("JSESSIONID") != null) {

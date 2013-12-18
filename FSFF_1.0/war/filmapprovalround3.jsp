@@ -72,6 +72,7 @@
 											3</a></li>
 								</ul></li>
 							<li><a href="editorpicks.jsp">Editor's Picks</a></li>
+							<li><a href="AdminHelp.jsp">Admin Help</a></li>
 						</ul>
 						<%
 							if (request.getSession().getAttribute("ADMINJSESSIONID") != null) {

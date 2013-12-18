@@ -31,7 +31,7 @@
 					<!-- Start: Primary navigation -->
 					<div class="nav-collapse collapse">
 						<ul class="nav pull-right">
-							<li><a href="index.jsp">Home</a></li>
+							<li class="active"><a href="index.jsp">Home</a></li>
 							<li><a href="#about">About</a></li>
 							<li class="dropdown"><a href="#" class="dropdown-toggle"
 								data-toggle="dropdown">View and Vote<b class="caret"></b></a>
@@ -40,12 +40,12 @@
 									<li><a href="Action.jsp">Action</a></li>
 									<li><a href="Drama.jsp">Drama</a></li>
 									<li><a href="Romance.jsp">Romance</a></li>
-									<li class="active"><a href="Thriller.jsp">Thriller</a></li>
+									<li><a href="Thriller.jsp">Thriller</a></li>
 									<li><a href="Animation.jsp">Animation</a></li>
 									<li><a href="Horror.jsp">Horror</a></li>
 								</ul></li>
 							<li><a href="uploadfilm.jsp">Enter the Film</a></li>
-
+							<li><a href="Help.jsp">Help</a></li>
 							<%
 								if (request.getSession().getAttribute("JSESSIONID") == null) {
 							%>

@@ -45,7 +45,7 @@
 									<li><a href="Horror.jsp">Horror</a></li>
 								</ul></li>
 							<li><a href="uploadfilm.jsp">Enter the Film</a></li>
-
+							<li><a href="Help.jsp">Help</a></li>
 							<%
 								if (request.getSession().getAttribute("JSESSIONID") == null) {
 							%>
